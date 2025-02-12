@@ -1,7 +1,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Bell,Facebook, Twitter, Instagram, Linkedin, Youtube } from "lucide-react";
+import { Bell, Facebook, Twitter, Instagram, Linkedin, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Footer() {

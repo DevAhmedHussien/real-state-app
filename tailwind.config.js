@@ -63,7 +63,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        pp: ["PP Neue Montreal", "sans-serif"], 
+        // pp: ["PP Neue Montreal", "sans-serif"], 
       },
     },
   },

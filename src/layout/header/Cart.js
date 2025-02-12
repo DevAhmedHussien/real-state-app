@@ -20,13 +20,13 @@ const Cart = ({ toggleCart, isCartOpen }) => {
   // Handle removing an item from the cart
   const handleRemoveItem = (id) => {
     dispatch(removeItem(id));
-    toast({ variant: 'danger', title: 'Product removed from cart' });
+    toast({ variant: 'warning', title: 'Product removed from cart' });
   };
 
   // Handle clearing the entire cart
   const handleClearCart = () => {
     dispatch(clearCart());
-    toast({ variant: 'danger', title: 'Cart cleared successfully' });
+    toast({ variant: 'warning', title: 'Cart cleared successfully' });
   };
 
   // Handle updating the quantity of an item
