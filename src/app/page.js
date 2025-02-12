@@ -53,39 +53,39 @@ export default function ProductPage() {
         <meta property="og:image:alt" content={metadata.openGraph.images[0].alt} />
       </Head>
 
-      <div className="container  mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* container  mx-auto px-4 sm:px-6 lg:px-8 py-8 */}
+      <div className="">
         {/* Main Heading */}
         {/* <h1 className="text-3xl font-bold text-center mb-8">Welcome to My Awesome Store</h1> */}
 
         <HeroSection/>
-
         <Categories/>
 
         {/* Product Grid */}
-        <h2 className="text-3xl mt-6 text-primary-dark font-bold text-left mb-6">Trending this Season</h2>
+        <div className='p-6'>
+          <h2 className="text-3xl text-primary-dark font-bold text-left">Trending this Season</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+              <div className="lg:col-span-3">
+                <Link key={products[0].id} href={`/look/${products[0].handlerName}`}>
+                  <ShownProductCard product={products[0]} />
+                </Link>
+              </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-          {/* Left Side - 3/5 Width */}
-          
-          <div className="lg:col-span-3 h-full">
-            <Link key={products[0].id} href={`/look/${products[0].handlerName}`}>
-              <ShownProductCard product={products[0]} />
-            </Link>
-          </div>
-
-          {/* Right Side - 2/5 Width */}
-          <div className="lg:col-span-2 flex flex-col gap-6 h-full">
-            {products.slice(1, 3).map((product) => (
-              <Link key={product.id} href={`/look/${product.handlerName}`}>
-                <ShownProductCard product={product} />
-              </Link>
-            ))}
-          </div>
+              {/* Right Side - 2/5 Width */}
+              <div className="lg:col-span-2 flex flex-col gap-6 h-full">
+                {products.slice(1, 3).map((product) => (
+                  <Link key={product.id} href={`/look/${product.handlerName}`}>
+                    <ShownProductCard product={product} />
+                  </Link>
+                ))}
+              </div>
+            </div>
         </div>
+        
 
         {/* Animated Products Section */}
-        <div className="mt-5">
-          <h2 className="text-3xl text-primary-dark font-bold text-left mb-6">Featured Products</h2>
+        <div className="mt-5 p-6">
+          <h2 className="text-3xl text-primary-dark font-bold text-left">Featured Products</h2>
           {/* <AnimatedtedProducts /> */}
           <EmblaCarousel slides={SLIDES} />
         </div>

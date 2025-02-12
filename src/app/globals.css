@@ -2,34 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Pulse Effect for Primary Button */
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.05); opacity: 0.9; }
-  100% { transform: scale(1); opacity: 1; }
-}
 
-.animate-pulse {
-  animation: pulse 0.5s ease-in-out infinite;
-}
-
-/* Shake Effect for Destructive Button */
-@keyframes shake {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-3px); }
-  50% { transform: translateX(3px); }
-  75% { transform: translateX(-3px); }
-  100% { transform: translateX(0); }
-}
-
-.animate-shake:hover {
-  animation: shake 0.4s ease-in-out;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-  :root {
+:root {
     --background: 0 0% 10%; /* Black */
     --foreground: 210 25% 96%; /* Light gray */
     --card: 0 0% 15%; /* Darker gray for cards */
@@ -57,7 +31,41 @@ body {
     --detail-high-contrast: rgb(192, 192, 192);
 }
 
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
 
+@layer base {
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 tracking-tighter;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-5 tracking-tight;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mb-4 tracking-normal;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl lg:text-3xl font-bold leading-tight mb-3 tracking-normal;
+  }
+
+  p {
+    @apply text-base md:text-lg leading-relaxed mb-4 text-gray-700;
+  }
+
+  a {
+    @apply text-inherit no-underline transition-colors duration-300  hover:underline;
+  }
+
+  span {
+    @apply text-base;
+  }
+}
+
+/* sidebar */
 @layer base {
   :root {
     --sidebar-background: 0 0% 98%;
@@ -81,15 +89,6 @@ body {
   }
 }
 
-/* @layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
- */
  .responsive-appbar-button {
   background: transparent;
   border: none;
@@ -117,21 +116,23 @@ body {
   z-index: 0;
   transition: left 0.3s ease;
 }
-
 .responsive-appbar-button:hover::after {
   left: 0;
 }
-
 .responsive-appbar-button span {
   position: relative;
   z-index: 1;
-}/* ** Product Slider */
+}
+
+
+/* ** Product Slider */
 /* .embla {
   overflow: hidden;
 }
 .embla__container {
   display: flex;
 }
+
 .embla__slide {
   flex: 0 0 25%;
   min-width: 0;

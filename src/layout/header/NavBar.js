@@ -57,7 +57,8 @@ export default function Navbar() {
       <ReduxProvider>
         {/* Navbar */}
         <header className="fixed top-0 left-0 w-full bg-background-default shadow-md z-50">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* container mx-auto px-4 sm:px-6 lg:px-8 */}
+          <div className="px-4 ">
             <div className="flex justify-between items-center h-16">
               {/* Logo and Menu Toggle */}
               <div className="flex items-center gap-4">
@@ -94,7 +95,7 @@ export default function Navbar() {
                             <ul
                               onMouseEnter={() => setIsSubLinksVisible(true)}
                               onMouseLeave={() => setIsSubLinksVisible(false)}
-                              className={`absolute left-[-30px] w-[87vw] p-4 bg-background-default shadow-lg rounded-lg transition-all duration-300 ease-in-out transform ${isSubLinksVisible
+                              className={`absolute left-[-30px] w-[100vw] p-4 bg-background-default shadow-lg rounded-lg transition-all duration-300 ease-in-out transform ${isSubLinksVisible
                                 ? 'opacity-100 scale-100 translate-y-0'
                                 : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
                                 }`}

@@ -27,7 +27,7 @@ const SlideBar = () => {
     <div className="w-full lg:w-1/6 bg-background-light p-4 rounded-lg shadow-md">
       
       {/* Title */}
-      <h2 className="text-md font-bold text-textColor-dark mb-4">Categories</h2>
+      <h4 className="text-md font-bold text-textColor-dark mb-4">Categories</h4>
       
       {/* Vertical Category List */}
       <ul className="space-y-2">

@@ -40,7 +40,7 @@ const SearchProduct = ({ searchQuery, setSearchQuery, toggleSearch, toggleCart, 
             isSearchOpen ? 'w-64 opacity-100 p-8' : 'w-0 opacity-0 p-8'
           }`}
         >
-          <form onSubmit={handleSearchProp} className="flex items-center">
+          <form onSubmit={handleSearchProp} className=" flex items-center">
           <Input
             // label='Email'
             type="text"
@@ -84,7 +84,7 @@ const SearchProduct = ({ searchQuery, setSearchQuery, toggleSearch, toggleCart, 
 
           {/* Cart Item Count Badge */}
           {cart.items.length > 0 && (
-            <span className="absolute -top-1 -right-1 bg-blue-500 text-white text-xs rounded-full px-1.5 py-0.5">
+            <span className="absolute -top-1 -right-1 bg-primary-default text-white text-xs rounded-full px-1.5 py-0.5 opacity-75">
               {cart.totalQuantity}
             </span>
           )}

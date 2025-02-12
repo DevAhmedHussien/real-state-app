@@ -67,7 +67,7 @@ const EmblaCarousel = (props) => {
                     <motion.div
                         key={index}
                         transition={{ duration: 0.3 }}
-                        className={`${!categories ? 'embla__slide' :'h-[520px]'} relative min-w-80 min-h-120 border-2 border-transparent rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary-default h-full flex justify-center items-center bg-background-light`} 
+                        className={`${!categories ? 'embla__slide' :'h-[27rem]'} relative min-w-80 min-h-120 border-2 border-transparent rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary-default h-full flex justify-center items-center bg-background-light`} 
                     >
                         <Link href="product-details">
                             <Image

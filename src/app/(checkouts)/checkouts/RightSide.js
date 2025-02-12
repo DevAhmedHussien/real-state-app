@@ -8,7 +8,7 @@ const RightSide = () => {
     <div className="md:col-span-1 bg-background-light p-6 rounded-lg shadow-lg">
       
       {/* Order Summary Title */}
-      <h2 className="text-2xl font-bold text-textColor-dark mb-4">Order Summary</h2>
+      <h2 className=" font-bold text-textColor-dark mb-4">Order Summary</h2>
 
       {/* Cart Items */}
       <div className="max-h-80 overflow-y-auto no-scrollbar space-y-4 p-2">

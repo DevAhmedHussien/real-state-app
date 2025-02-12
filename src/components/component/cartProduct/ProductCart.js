@@ -1,5 +1,6 @@
 import { Trash2 } from "lucide-react";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const ProductCart = ({ item, handleUpdateQuantity, handleRemoveItem, editable = true }) => {
   const [isRemoving, setIsRemoving] = useState(false);
@@ -14,76 +15,92 @@ const ProductCart = ({ item, handleUpdateQuantity, handleRemoveItem, editable = 
     setIsRemoving(true);
     setTimeout(() => {
       handleRemoveItem(id);
-    }, 300); // Delay for transition effect
+    }, 300); 
   };
 
   return (
-    <div
-      key={item.id}
-      className={`flex items-center gap-4 border-b border-gray-300 pb-4 last:border-b-0 transition-all duration-300 ${
-        isRemoving ? "opacity-0 scale-95 translate-x-3" : "opacity-100 scale-100"
-      }`}
-    >
-      {/* Product Image */}
-      {item.images && item.images.length > 0 && (
-        <img
-          src={item.images[0].url} // Display the first image
-          alt={item.name}
-          className="w-20 h-20 object-cover rounded-lg shadow-md border border-gray-200"
-        />
-      )}
+    <AnimatePresence>
+      {!isRemoving && (
+        <motion.div
+          key={item.id}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, x: 50, scale: 0.95 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="flex items-center gap-4 border-b border-gray-300 pb-4 last:border-b-0"
+        >
+          {/* Product Image */}
+          {item.images && item.images.length > 0 && (
+            <motion.img
+              src={item.images[0].url}
+              alt={item.name}
+              className="w-20 h-20 object-cover rounded-lg shadow-md border border-gray-200"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+            />
+          )}
 
-      {/* Product Details */}
-      <div className="flex-1">
-        <h3 className="font-semibold text-md text-textColor-dark">{item.name}</h3>
-        <h5 className="text-sm text-textColor-muted">
-          {item.selectedProduct.color} / {item.selectedProduct.size}
-        </h5>
+          {/* Product Details */}
+          <div className="flex-1">
+            <h3 className="font-semibold text-xl text-primary-dark">{item.name}</h3>
+            <h4 className="text-sm text-primary-hover">
+              {item.selectedProduct.color} / {item.selectedProduct.size}
+            </h4>
 
-        {/* Quantity Controls and Remove Button */}
-        <div className="flex items-center justify-between mt-2">
-          {!editable ? (
-            <>
-              <h5 className="text-textColor-muted">{item.quantity}</h5>
-              <span className="text-textColor-dark font-semibold">
-                $ {(item.price * item.quantity).toFixed(2)}
-              </span>
-            </>
-          ) : (
-            <div className="flex items-center gap-2">
-              {/* Decrease Quantity Button */}
-              <button
-                onClick={() => handleQuantity(item.id, item.quantity - 1)}
-                className="w-8 h-8 flex items-center justify-center bg-background-light rounded-lg hover:bg-accent-default hover:text-white transition-all hover:scale-105"
-              >
-                <span className="text-lg font-semibold">−</span>
-              </button>
+            {/* Quantity Controls and Remove Button */}
+            <div className="flex items-center justify-between mt-2">
+              {!editable ? (
+                <>
+                  <h5 className="text-primary-hover">{item.quantity}</h5>
+                  <span className="text-primary-dark font-semibold">
+                    $ {(item.price * item.quantity).toFixed(2)}
+                  </span>
+                </>
+              ) : (
+                <div className="flex items-center gap-2">
+                  {/* Decrease Quantity Button */}
+                  <motion.button
+                    onClick={() => handleQuantity(item.id, item.quantity - 1)}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="w-8 h-8 flex items-center justify-center bg-background-light rounded-lg hover:bg-accent-default hover:text-white transition-all"
+                  >
+                    <span className="text-lg font-semibold">−</span>
+                  </motion.button>
 
-              {/* Quantity Display */}
-              <span className="w-8 text-center text-textColor-dark font-semibold">{item.quantity}</span>
+                  {/* Quantity Display */}
+                  <span className="w-8 text-center text-primary-dark font-semibold">
+                    {item.quantity}
+                  </span>
 
-              {/* Increase Quantity Button */}
-              <button
-                onClick={() => handleQuantity(item.id, item.quantity + 1)}
-                className="w-8 h-8 flex items-center justify-center bg-background-light rounded-lg hover:bg-accent-default hover:text-white transition-all hover:scale-105"
-              >
-                <span className="text-lg font-semibold">+</span>
-              </button>
+                  {/* Increase Quantity Button */}
+                  <motion.button
+                    onClick={() => handleQuantity(item.id, item.quantity + 1)}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="w-8 h-8 flex items-center justify-center bg-background-light rounded-lg hover:bg-accent-default hover:text-white transition-all"
+                  >
+                    <span className="text-lg font-semibold">+</span>
+                  </motion.button>
+                </div>
+              )}
+
+              {/* Remove Button with Icon */}
+              {editable && (
+                <motion.button
+                  onClick={() => handleRemove(item.id)}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="text-errorColor-light hover:text-errorColor-default transition-all"
+                >
+                  <Trash2 size={23} />
+                </motion.button>
+              )}
             </div>
-          )}
-
-          {/* Remove Button with Icon */}
-          {editable && (
-            <button
-              onClick={() => handleRemove(item.id)}
-              className="text-errorColor-light hover:text-errorColor-default transition-all hover:scale-110"
-            >
-              <Trash2 size={23} />
-            </button>
-          )}
-        </div>
-      </div>
-    </div>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 

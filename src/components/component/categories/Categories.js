@@ -12,7 +12,7 @@ const SLIDES = [
 const Categories = () => {
   return (
 
-       <div className="mt-5">
+       <div className="mt-5 p-6">
                 <h2 className="text-3xl font-bold text-primary-dark text-left mb-6">Shop By Category</h2>
                 {/* <AnimatedtedProducts /> */}
                 <EmblaCarousel categories = {true} slides={SLIDES} />

@@ -9,7 +9,8 @@ export const metadata = {
 
 export default function CommerceLayout({ children }) {
   return (
-    <div className={`container mt-20 mx-auto px-4 sm:px-6 lg:px-8 py-8`}>
+    // container mt-20 mx-auto px-4 sm:px-6 lg:px-8 py-8
+    <div className='mt-12 p-6'>
       <div className="flex flex-col lg:flex-row gap-8 align-start">
         {/* Sidebar */}
         <SlideBar />

@@ -252,7 +252,7 @@ export default async function Products({ params, searchParams }) {
   const paginatedProducts = paginateProducts(sortedProducts, Number(page), ITEMS_PER_PAGE);
 
   return (
-    <div className="w-full lg:w-[70vw] p-6 bg-background-light rounded-lg shadow-md">
+    <div className="w-full lg:w-[80vw] p-6 bg-background-light rounded-lg shadow-md">
       
       {/* Title */}
       <h1 className="text-3xl font-bold text-textColor-dark mb-6 capitalize">{title} Collection</h1>
