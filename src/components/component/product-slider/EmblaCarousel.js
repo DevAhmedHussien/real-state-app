@@ -1,5 +1,5 @@
 "use client"
-
+import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 // import Autoplay from 'embla-carousel-autoplay'
@@ -17,7 +17,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 const EmblaCarousel = (props) => {
-    const { slides } = props
+    const { slides  , categories = false} = props
     const [slidesToShow, setSlidesToShow] = useState(1)
 
     useEffect(() => {
@@ -53,36 +53,48 @@ const EmblaCarousel = (props) => {
         onPrevButtonClick,
         onNextButtonClick
     } = usePrevNextButtons(emblaApi)
-
     // const { selectedSnap, snapCount } = useSelectedSnapDisplay(emblaApi)
-
     return (
         <section className="embla">
             <div className="embla__viewport" ref={emblaRef}>
-                <div className="embla__container">
-                    {slides.map((image, index) => (
-                        <Link className="embla__slide min-w-80 min-h-120 relative border-2 border-transparent rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary-default h-full flex justify-center items-center bg-background-light" key={index} href="product-details">
-                            <div>
-                                <Image
-                                    src={image}
-                                    alt={`Slide ${index + 1}`}
-                                    className="embla__slide__img"
-                                    width={200}
-                                    height={200}
-                                />
-                                <div>Slide {index + 1}</div>
-                            </div>
+            <motion.div 
+                className="embla__container flex"
+                initial={{ opacity: 0 }} 
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                    >
+                {slides.map((image, index) => (
+                    <motion.div
+                        key={index}
+                        transition={{ duration: 0.3 }}
+                        className={`${!categories ? 'embla__slide' :'h-[510px]'} relative min-w-80 min-h-120 border-2 border-transparent rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary-default h-full flex justify-center items-center bg-background-light`} 
+                    >
+                        <Link href="product-details">
+                            <Image
+                                src={image}
+                                alt={`Slide ${index + 1}`}
+                                width={categories ? 400 : 200}
+                                height={categories ? 400 : 200}
+                                className={`${!categories ? 'embla__slide__img' :'h-[100%] w-[100%]'}`}
+                            />
                         </Link>
-                    ))}
-                </div>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.1, duration: 0.5 }}
+                            className='absolute bottom-4 right-4 bg-black bg-opacity-50 text-white p-2 rounded-lg'
+                        >
+                            Slide {index + 1}
+                        </motion.div>
+                    </motion.div>
+))}
+</motion.div>
             </div>
-
             <div className="embla__controls">
                 <div className="embla__buttons">
                     <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
                     <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
                 </div>
-
                 {/* <SelectedSnapDisplay
                     selectedSnap={selectedSnap}
                     snapCount={snapCount}
@@ -93,3 +105,4 @@ const EmblaCarousel = (props) => {
 }
 
 export default EmblaCarousel
+

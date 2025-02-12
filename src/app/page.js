@@ -4,6 +4,8 @@ import { products } from '@/constants/data';
 import Link from 'next/link';
 import Head from 'next/head';
 import EmblaCarousel from '@/components/component/product-slider/EmblaCarousel';
+import HeroSection from '@/components/component/hero-section/HeroSection';
+import Categories from '@/components/component/categories/Categories';
 
 // Metadata for SEO
 export const metadata = {
@@ -51,13 +53,20 @@ export default function ProductPage() {
         <meta property="og:image:alt" content={metadata.openGraph.images[0].alt} />
       </Head>
 
-      <div className="container mt-20 mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="container  mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Main Heading */}
         {/* <h1 className="text-3xl font-bold text-center mb-8">Welcome to My Awesome Store</h1> */}
 
+        <HeroSection/>
+
+        <Categories/>
+
         {/* Product Grid */}
+        <h2 className="text-3xl mt-6 font-bold text-left mb-6">Trending this Season</h2>
+
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
           {/* Left Side - 3/5 Width */}
+          
           <div className="lg:col-span-3 h-full">
             <Link key={products[0].id} href={`/look/${products[0].handlerName}`}>
               <ShownProductCard product={products[0]} />

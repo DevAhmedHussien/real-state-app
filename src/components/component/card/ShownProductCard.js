@@ -1,5 +1,9 @@
+"use client";
+
 import Image from 'next/image';
-import { ShoppingCart, Star, StarHalf, StarOff } from "lucide-react"; // Icons for star ratings
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ShoppingCart, Star, StarHalf, StarOff } from "lucide-react";
 import { Button } from '@/components/ui/button';
 
 const getStarRating = (rating) => {
@@ -17,19 +21,51 @@ const getStarRating = (rating) => {
 };
 
 const ShownProductCard = ({ product, isPriority = false }) => {
+  
+  const images = product.images.length > 1 ? product.images : [product.images[0]]; // Ensure at least 1 image
+  const [isHovered, setIsHovered] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Change image when hovered
+  const handleHoverStart = () => {
+    if (images.length > 1) {
+      setIsHovered(true);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }
+  };
+
+  const handleHoverEnd = () => {
+    setIsHovered(false);
+  };
+
   return (
-    <div className="min-w-80 min-h-60 relative border-2 border-transparent rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary-default h-full flex justify-center items-center bg-background-light">
+    <div 
+      className="min-w-80 min-h-60 relative border-2 border-transparent rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary-default h-full flex justify-center items-center bg-background-light"
+      onMouseEnter={handleHoverStart}
+      onMouseLeave={handleHoverEnd}
+    >
       
-      {/* Optimized Image with next/image */}
-      <div className="w-4/5 relative" style={{ minHeight: '380px', height: '100%' }}>
-        <Image
-          src={product.images[0].url}
-          alt={product.name}
-          fill 
-          className="object-cover transform hover:scale-105 transition-transform duration-300 rounded-lg"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" 
-          priority={isPriority} 
-        />
+      {/* Image Container */}
+      <div className="w-4/5 relative overflow-hidden" style={{ minHeight: '380px', height: '100%' }}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: "0%" }}
+            exit={{ opacity: 0, x: "-100%" }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className="absolute w-full h-full"
+          >
+            <Image
+              src={images[currentIndex].url}
+              alt={product.name}
+              fill
+              className="object-cover rounded-lg w-[100%] h-[100%]"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              priority={isPriority}
+            />
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* Product Info Section */}
@@ -39,9 +75,16 @@ const ShownProductCard = ({ product, isPriority = false }) => {
         <div className="flex items-center justify-between gap-4 mt-2">
           <p className="text-lg font-semibold text-accent-default">${product.price}</p>
           <Button variant="outline" size="sm">
-          <ShoppingCart size={16} /> Add To Cart
+            <motion.div 
+              className="flex items-center"
+              whileHover={{ rotate: [0, -10, 10, -10, 10, 0] }} // Shake effect
+              transition={{ duration: 0.5, repeat: Infinity, repeatType: "loop" }}
+            >
+              <ShoppingCart size={16} className="mr-1" />
+            
+            </motion.div>
+            {/* Add To Cart */}
           </Button>
-          
         </div>
       </div>
     </div>
