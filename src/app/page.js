@@ -62,7 +62,7 @@ export default function ProductPage() {
         <Categories/>
 
         {/* Product Grid */}
-        <h2 className="text-3xl mt-6 font-bold text-left mb-6">Trending this Season</h2>
+        <h2 className="text-3xl mt-6 text-primary-dark font-bold text-left mb-6">Trending this Season</h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
           {/* Left Side - 3/5 Width */}
@@ -85,7 +85,7 @@ export default function ProductPage() {
 
         {/* Animated Products Section */}
         <div className="mt-5">
-          <h2 className="text-3xl font-bold text-left mb-6">Featured Products</h2>
+          <h2 className="text-3xl text-primary-dark font-bold text-left mb-6">Featured Products</h2>
           {/* <AnimatedtedProducts /> */}
           <EmblaCarousel slides={SLIDES} />
         </div>

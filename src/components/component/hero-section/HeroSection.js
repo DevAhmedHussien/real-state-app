@@ -28,9 +28,9 @@ const HeroSection = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % slides.length);
-    }, 8000); // Change slide every 5 seconds
+    }, 8000);
     return () => clearInterval(interval);
-  }, []);
+  }, [currentIndex]);
 
   return (
     <div className="relative h-screen w-full overflow-hidden">
@@ -51,14 +51,14 @@ const HeroSection = () => {
         </motion.div>
       </AnimatePresence>
 
-      <div className="absolute inset-0 bg-gradient-to-r from-[#432F28] via-[#E7B987] to-[#C49166] opacity-30"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-primary-dark via-primary-light to-primary-hover opacity-30"></div>
 
       <div className="relative z-10 flex flex-col justify-center items-center h-full px-6 text-white text-center">
         <motion.h1
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-5xl font-extrabold md:text-6xl text-[#FFEEBB]"
+          className="text-5xl font-extrabold md:text-6xl text-primary-dark"
         >
           {slides[currentIndex].title}
         </motion.h1>
@@ -66,7 +66,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-4 text-lg max-w-2xl text-[#FFEEBB]"
+          className="mt-4 text-lg max-w-2xl text-primary-dark"
         >
           {slides[currentIndex].subtitle}
         </motion.p>
@@ -83,7 +83,13 @@ const HeroSection = () => {
             whileTap={{ scale: 0.95 }}
             className="px-8 py-3 border border-transparent text-lg font-semibold rounded-lg text-white bg-[#432F28] hover:bg-[#E7B987] transition-all shadow-lg flex items-center gap-2"
           >
-            <ShoppingBag className="w-5 h-5" /> Shop Now
+            <motion.div
+              whileHover={{ rotate: [0, -10, 10, -10, 10, 0], scale: 1.2 }}
+              transition={{ duration: 0.5 }}
+            >
+              <ShoppingBag className="w-5 h-5" />
+            </motion.div>
+            Shop Now
           </motion.a>
           <motion.a
             href="#"
@@ -91,7 +97,13 @@ const HeroSection = () => {
             whileTap={{ scale: 0.95 }}
             className="px-8 py-3 border border-transparent text-lg font-semibold rounded-lg text-[#432F28] bg-[#FFEEBB] hover:bg-[#C49166] transition-all shadow-lg flex items-center gap-2"
           >
-            <Info className="w-5 h-5" /> Learn More
+            <motion.div
+              whileHover={{ rotate: [0, -10, 10, -10, 10, 0], scale: 1.2 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Info className="w-5 h-5" />
+            </motion.div>
+            Learn More
           </motion.a>
         </motion.div>
 
@@ -100,9 +112,15 @@ const HeroSection = () => {
           {slides.map((_, index) => (
             <motion.div
               key={index}
-              className={`w-3 h-3 rounded-full ${index === currentIndex ? "bg-[#FFEEBB] scale-125" : "bg-[#C49166]"}`}
-              animate={{ scale: index === currentIndex ? 1.2 : 1 }}
-              transition={{ duration: 0.3 }}
+              onClick={() => setCurrentIndex(index)}
+              className={`w-3 h-3 rounded-full ${
+                index === currentIndex ? "bg-[#FFEEBB]" : "bg-[#C49166]"
+              } transition-all duration-500 ease-in-out cursor-pointer`}
+              animate={{
+                scale: index === currentIndex ? 1.2 : 1,
+                width: index === currentIndex ? "1.5rem" : "0.75rem",
+              }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
             />
           ))}
         </div>

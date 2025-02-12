@@ -9,7 +9,7 @@ const AnimatedtedProducts = () => {
         {products.map((product) => (
           <div
             key={product.id}
-            className="transition-transform duration-300 ease-in-out transform " //hover:scale-105
+            className="transition-transform duration-300 ease-in-out transform " 
           >
             <ShownProductCard product={product} />
           </div>

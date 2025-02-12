@@ -94,7 +94,7 @@ export default function Navbar() {
                             <ul
                               onMouseEnter={() => setIsSubLinksVisible(true)}
                               onMouseLeave={() => setIsSubLinksVisible(false)}
-                              className={`absolute left-[-30px] w-[70vw] p-4 bg-background-default shadow-lg rounded-lg transition-all duration-300 ease-in-out transform ${isSubLinksVisible
+                              className={`absolute left-[-30px] w-[87vw] p-4 bg-background-default shadow-lg rounded-lg transition-all duration-300 ease-in-out transform ${isSubLinksVisible
                                 ? 'opacity-100 scale-100 translate-y-0'
                                 : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
                                 }`}
@@ -103,7 +103,7 @@ export default function Navbar() {
                                 <li key={subIndex}>
                                   <Link
                                     href={`/products/${subLink}`}
-                                    className="block px-4 py-2 text-textColor-dark hover:text-primary-hover transition-all duration-200"
+                                    className="block px-4 py-2 text-primary-dark hover:text-primary-hover transition-all duration-200"
                                   >
                                     {subLink}
                                   </Link>

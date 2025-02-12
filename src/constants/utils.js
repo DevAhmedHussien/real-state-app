@@ -1,3 +1,5 @@
+import { Star, StarHalf, StarOff } from "lucide-react";
+
   // Validation functions
   export const validateEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -25,3 +27,18 @@
     const phoneRegex = /^[0-9]{10,15}$/;
     return phoneRegex.test(telephone) ? null : 'Invalid telephone number';
     }; 
+
+    export const getStarRating = (rating) => {
+      const fullStars = Math.floor(rating);
+      const hasHalfStar = rating % 1 !== 0;
+      const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+    
+      return (
+        <div className="flex items-center text-accent-default">
+          {Array(fullStars).fill().map((_, i) => <Star key={i} size={16} className="fill-current" />)}
+          {hasHalfStar && <StarHalf size={16} className="fill-current" />}
+          {Array(emptyStars).fill().map((_, i) => <StarOff key={i} size={16} className="text-gray-400" />)}
+        </div>
+      );
+    };
+    

@@ -49,45 +49,38 @@ const SearchProduct = ({ searchQuery, setSearchQuery, toggleSearch, toggleCart, 
             onChange={(e) => setSearchQuery(e.target.value)}
            placeholder="Search..."
           />
-            {/* <input
-              type="text"
-              placeholder="Search..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            /> */}
-            
           </form>
         </div>
 
         {/* Search Icon */}
         <button
           onClick={handleToggleSearch}
-          className={`absolute right-0 top-1/2 transform -translate-y-1/2 text-gray-800 hover:text-blue-500 transition-opacity duration-300 ${
+          className={`absolute right-0 top-1/2 transform -translate-y-1/2 text-primary-dark  hover:text-primary-hover transition-opacity duration-300 ${
             isSearchOpen ? 'opacity-0' : 'opacity-100'
           }`}
         >
-          <Search size={20} />
+          <Search size={20} className="text-primary-dark hover:text-primary-hover transition-colors duration-300" />
         </button>
 
         {/* Close or Search Icon */}
         <button
           onClick={searchQuery.length > 0 ? handleSearchProp : handleToggleSearch}
-          className={`absolute right-0 top-1/2 transform -translate-y-1/2 text-gray-800 hover:text-blue-500 transition-opacity duration-300 ${
+          className={`absolute right-0 top-1/2 transform -translate-y-1/2 text-primary-dark  hover:text-primary-hover transition-opacity duration-300 ${
             isSearchOpen ? 'opacity-100' : 'opacity-0'
           }`}
         >
-          {searchQuery.length > 0 ? <Search size={20} /> : <X size={20} />}
+          {searchQuery.length > 0 ? <Search size={20} className="text-primary-dark hover:text-primary-hover transition-colors duration-300"  /> 
+          : <X size={20} className="text-primary-dark hover:text-primary-hover transition-colors duration-300" />}
         </button>
       </div>
 
       {/* Cart Toggle */}
       <button
           onClick={handleToggleCart}
-          className="relative p-2 text-gray-800 hover:text-blue-500 transition-colors duration-300"
+          className="relative p-2 text-primary-dark hover:text-primary-hover transition-colors duration-300"
         >
           {/* Shopping Cart Icon */}
-          <ShoppingCart size={20} />
+          <ShoppingCart size={20} className='' />
 
           {/* Cart Item Count Badge */}
           {cart.items.length > 0 && (
@@ -98,7 +91,7 @@ const SearchProduct = ({ searchQuery, setSearchQuery, toggleSearch, toggleCart, 
         </button>
 
       {/* Login Link */}
-      <Link href="/login" className="text-gray-800 hover:text-blue-500">
+      <Link href="/login" className="text-gray-800 hover:text-primary-hover  transition-colors duration-300">
         <UserRound size={20} />
       </Link>
     </div>

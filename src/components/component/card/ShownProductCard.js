@@ -3,26 +3,14 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingCart, Star, StarHalf, StarOff } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { Button } from '@/components/ui/button';
+import { getStarRating } from '@/constants/utils';
 
-const getStarRating = (rating) => {
-  const fullStars = Math.floor(rating);
-  const hasHalfStar = rating % 1 !== 0;
-  const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-
-  return (
-    <div className="flex items-center text-accent-default">
-      {Array(fullStars).fill().map((_, i) => <Star key={i} size={16} className="fill-current" />)}
-      {hasHalfStar && <StarHalf size={16} className="fill-current" />}
-      {Array(emptyStars).fill().map((_, i) => <StarOff key={i} size={16} className="text-gray-400" />)}
-    </div>
-  );
-};
 
 const ShownProductCard = ({ product, isPriority = false }) => {
   
-  const images = product.images.length > 1 ? product.images : [product.images[0]]; // Ensure at least 1 image
+  const images = product.images.length > 1 ? product.images : [product.images[0]]; 
   const [isHovered, setIsHovered] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -34,8 +22,11 @@ const ShownProductCard = ({ product, isPriority = false }) => {
     }
   };
 
+
+  console.log("currentIndex", currentIndex)
   const handleHoverEnd = () => {
-    setIsHovered(false);
+    setIsHovered(false)
+    setCurrentIndex(0)
   };
 
   return (
@@ -50,9 +41,9 @@ const ShownProductCard = ({ product, isPriority = false }) => {
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
-            initial={{ opacity: 0, x: "100%" }}
+            initial={{ opacity: 0, x: isHovered ?  "100%" : "-100%"}}
             animate={{ opacity: 1, x: "0%" }}
-            exit={{ opacity: 0, x: "-100%" }}
+            exit={{ opacity: 0, x: isHovered ?  "-100%" : "100%" }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
             className="absolute w-full h-full"
           >
@@ -69,19 +60,18 @@ const ShownProductCard = ({ product, isPriority = false }) => {
       </div>
 
       {/* Product Info Section */}
-      <div className="absolute bottom-2 right-2 bg-white bg-opacity-90 px-4 py-3 rounded-lg shadow-md backdrop-blur-md">
-        <h2 className="text-lg font-semibold text-textColor-dark">{product.name}</h2>
+      <div className="absolute bottom-2 right-2 bg-white bg-opacity-60 px-4 py-3 rounded-lg shadow-md backdrop-blur-md">
+        <h2 className="text-lg font-semibold text-primary-dark">{product.name}</h2>
         <div className="mt-1">{getStarRating(product.rating || 4.5)}</div>
         <div className="flex items-center justify-between gap-4 mt-2">
           <p className="text-lg font-semibold text-accent-default">${product.price}</p>
-          <Button variant="outline" size="sm">
+          <Button variant="outline" size="sm"className="hover:text-primary-hover transition-transform duration-300 ease-in-out transform ">
             <motion.div 
-              className="flex items-center"
-              whileHover={{ rotate: [0, -10, 10, -10, 10, 0] }} // Shake effect
+              className="flex w-full h-full items-center"
+              whileHover={{ rotate: [0, -10, 10, -10, 10, 0] }} 
               transition={{ duration: 0.5, repeat: Infinity, repeatType: "loop" }}
             >
-              <ShoppingCart size={16} className="mr-1" />
-            
+              <ShoppingCart size={16} className="mr-1  text-primary-dark" />
             </motion.div>
             {/* Add To Cart */}
           </Button>
