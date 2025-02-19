@@ -42,7 +42,7 @@ const Input = ({ label = "", type, id, value, onChange, onBlur, error, placehold
         >
           {id === "email" && <Mail size={20} className="animate-pulse" />}
           {id === "telephone" && <Phone size={20} className="animate-bounce" />}
-          {id === "firstName" && <User size={20} className="animate-spin" />}
+          {id === "firstName" && <User size={20} className="animate-pulse" />}
           {id === "lastName" && <User size={20} className="animate-pulse" />}
           {id === "search" && <Search size={20} className="animate-wiggle" />}
         </motion.span>

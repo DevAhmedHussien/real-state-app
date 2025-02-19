@@ -1,5 +1,4 @@
 "use client";
-
 import Image from 'next/image';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -23,7 +22,6 @@ const ShownProductCard = ({ product, isPriority = false }) => {
   };
 
 
-  console.log("currentIndex", currentIndex)
   const handleHoverEnd = () => {
     setIsHovered(false)
     setCurrentIndex(0)
@@ -60,11 +58,13 @@ const ShownProductCard = ({ product, isPriority = false }) => {
       </div>
 
       {/* Product Info Section */}
-      <div className="absolute bottom-2 right-2 bg-white bg-opacity-60 px-4 py-3 rounded-lg shadow-md backdrop-blur-md">
+      <div className={`absolute bottom-2 right-2 bg-white bg-opacity-60 px-4 py-3 rounded-lg shadow-md backdrop-blur-md`}>
         <h2 className="text-lg font-semibold text-primary-dark">{product.name}</h2>
         <div className="mt-1">{getStarRating(product.rating || 4.5)}</div>
         <div className="flex items-center justify-between gap-4 mt-2">
-          <p className="text-lg font-semibold text-accent-default">${product.price}</p>
+            <p className="text-lg font-semibold text-accent-default"><span className="line-through text-gray-400 mr-3">${ product.price * 200/100}</span>
+            ${product.price}</p>
+         
           <Button variant="outline" size="sm"className="hover:text-primary-hover transition-transform duration-300 ease-in-out transform ">
             <motion.div 
               className="flex w-full h-full items-center"
@@ -76,6 +76,19 @@ const ShownProductCard = ({ product, isPriority = false }) => {
             {/* Add To Cart */}
           </Button>
         </div>
+      </div>
+
+      {/* label of card */}
+        <div className="absolute top-0 left-0 w-full p-4 flex items-start justify-between">
+          {/* Discount Badge */}
+          <p className="text-white  text-sm   bg-red-400 px-4 py-2 rounded-full backdrop-blur-sm hover:bg-black/30 transition-all duration-300">
+            50% OFF
+          </p>
+
+          {/* Stock Information */}
+          <p className="text-primary-dark text-sm font-semibold px-3 py-1.5 rounded-full transition-all duration-300">
+            Limited Stock
+          </p>
       </div>
     </div>
   );

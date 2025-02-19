@@ -3,6 +3,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import Footer from "@/layout/footer/Footer";
 import Navbar from "@/layout/header/NavBar";
+import SocialLinks from "@/components/component/social-links/SocialLinks";
 // import NavigationMenuDemo from "@/components/component/header/NavigationMenuDemo";
 
 const roboto = Poppins({
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
         <Navbar/>
           <main>{children}</main>
         <Toaster/>
+        <SocialLinks/>
         <Footer />
       </body>
     </html>

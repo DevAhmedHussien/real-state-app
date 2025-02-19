@@ -10,6 +10,7 @@ import MenuOpen from './MenuOpen';
 import SearchProduct from './SearchProduct';
 import { usePathname } from 'next/navigation';
 import ReduxProvider from '@/redux/ReduxProvider';
+import NextLink from '@/components/ui/NextLink';
 
 export default function Navbar() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -22,6 +23,7 @@ export default function Navbar() {
     { name: 'Products', link: '/products' },
     { name: 'About', link: '/about' },
     { name: 'Contact', link: '/contact' },
+    { name: 'Support', link: '/support' },
   ];
 
   const subLinks = ['shirts', 'jeans', 'hoodies', 'jacket'];
@@ -56,76 +58,12 @@ export default function Navbar() {
     <>
       <ReduxProvider>
         {/* Navbar */}
-        <header className="fixed top-0 left-0 w-full bg-background-default shadow-md z-50">
+        <header className="fixed top-0 left-0 w-full bg-background-default opacity-90 shadow-md z-50">
           {/* container mx-auto px-4 sm:px-6 lg:px-8 */}
           <div className="px-4 ">
             <div className="flex justify-between items-center h-16">
+              
               {/* Logo and Menu Toggle */}
-              <div className="flex items-center gap-4">
-                {/* Mobile Menu Button */}
-                <button
-                  onClick={toggleMenu}
-                  className="md:hidden text-primary-dark hover:text-primary-hover transition-all"
-                >
-                  <Menu size={24} />
-                </button>
-
-                {/* Navigation Links */}
-                <nav className={`md:flex items-center space-x-6 hidden`}>
-                  <ul className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
-                    {links.map((link, index) => (
-                      <li key={index} className="relative">
-                        {link.name === 'Products' ? (
-                          <>
-                            <button
-                              onMouseEnter={() => setIsSubLinksVisible(true)}
-                              onMouseLeave={() => setIsSubLinksVisible(false)}
-                              className="text-primary-dark flex justify-center items-center gap-2 hover:text-primary-hover transition-all"
-                              aria-label="Toggle sub-links"
-                            >
-                              <Link href={link.link}>{link.name}</Link>
-                              {isSubLinksVisible ? (
-                                <ChevronUp size={16} />
-                              ) : (
-                                <ChevronDown size={16} />
-                              )}
-                            </button>
-
-                            {/* Submenu */}
-                            <ul
-                              onMouseEnter={() => setIsSubLinksVisible(true)}
-                              onMouseLeave={() => setIsSubLinksVisible(false)}
-                              className={`absolute left-[-30px] w-[100vw] p-4 bg-background-default shadow-lg rounded-lg transition-all duration-300 ease-in-out transform ${isSubLinksVisible
-                                ? 'opacity-100 scale-100 translate-y-0'
-                                : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
-                                }`}
-                            >
-                              {subLinks.map((subLink, subIndex) => (
-                                <li key={subIndex}>
-                                  <Link
-                                    href={`/products/${subLink}`}
-                                    className="block px-4 py-2 text-primary-dark hover:text-primary-hover transition-all duration-200"
-                                  >
-                                    {subLink}
-                                  </Link>
-                                </li>
-                              ))}
-                            </ul>
-                          </>
-                        ) : (
-                          <Link
-                            href={link.link}
-                            className="text-primary-dark hover:text-primary-hover transition-all"
-                          >
-                            {link.name}
-                          </Link>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
-              </div>
-
               <div className='flex items-center'>
                 <Link href="/" aria-label="Home page" title="Go to Home page">
                   <Image
@@ -140,14 +78,82 @@ export default function Navbar() {
                   />
                 </Link>
               </div>
+              
+              {/* navbar */}
+              <div className="flex items-center gap-4">
+                {/* Mobile Menu Button */}
+                <button
+                  onClick={toggleMenu}
+                  className="md:hidden text-primary-dark hover:text-primary-hover transition-all"
+                >
+                  <Menu size={24} />
+                </button>
+
+                {/* Navigation Links */}
+                <nav className={`md:flex items-center space-x-6 hidden`}>
+                  <ul className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
+                    {links.map((link, index) => (
+                      // className="relative"
+                      <li key={index} > 
+                        {link.name === 'Products' ? (
+                          <>
+                            <button
+                              onMouseEnter={() => setIsSubLinksVisible(true)}
+                              onMouseLeave={() => setIsSubLinksVisible(false)}
+                              className="text-primary-dark flex justify-center items-center gap-2 transition-all"
+                              aria-label="Toggle sub-links"
+                            >
+                              <NextLink href={link.link} className='responsive-appbar-button'>{link.name}</NextLink>
+                              {isSubLinksVisible ? (
+                                <ChevronUp size={16} />
+                              ) : (
+                                <ChevronDown size={16} />
+                              )}
+                            </button>
+
+                            {/* Submenu */}
+                            <ul
+                              onMouseEnter={() => setIsSubLinksVisible(true)}
+                              onMouseLeave={() => setIsSubLinksVisible(false)}
+                              className={`fixed left-[10%]  w-[80vw] p-4 bg-background-default shadow-lg rounded-lg transition-all duration-300 ease-in-out transform ${isSubLinksVisible
+                                ? 'opacity-100 scale-100 translate-y-0'
+                                : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
+                                }`}
+                            >
+                              {subLinks.map((subLink, subIndex) => (
+                                <li key={subIndex}>
+                                  <Link href={`/products/${subLink}`}
+                                    className="block px-4 py-2 text-primary-dark hover:text-primary-hover transition-all duration-200"
+                                  >
+                                    {subLink}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </>
+                        ) : (
+                          <button
+                          className="text-primary-dark flex justify-center items-center gap-2 transition-all"
+                          aria-label="Toggle sub-links"
+                          >
+                          <NextLink
+                            href={link.link}
+                            className="responsive-appbar-button"
+                          >
+                            {link.name}
+                          </NextLink>
+                        </button>
+                       
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              </div>
 
               {/* Search and Cart */}
               <SearchProduct
                 isSearchOpen={isSearchOpen}
-                handleSearch={(e) => {
-                  e.preventDefault();
-                  console.log('Searching for:', searchQuery);
-                }}
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
                 toggleSearch={toggleSearch}

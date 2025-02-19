@@ -89,12 +89,13 @@ body {
   }
 }
 
+a , button{ 
+  text-decoration: none !important;
+
+}
  .responsive-appbar-button {
   background: transparent;
   border: none;
-  font-size: 15px;
-  margin-top: 5px;
-  height: auto;
   cursor: pointer;
   padding: 5px;
   position: relative;
@@ -102,7 +103,6 @@ body {
   overflow: hidden;
   text-transform: capitalize;
   color: var(--primary-color) ;
-
 
 }
 .responsive-appbar-button::after {
@@ -112,7 +112,7 @@ body {
   height: 5%;
   bottom: 0;
   left: -100%;
-  background: linear-gradient(to right, #001d4a 10%, #e58a81);
+  background: linear-gradient(to right, #ECC94B 10%, #432F28);
   z-index: 0;
   transition: left 0.3s ease;
 }

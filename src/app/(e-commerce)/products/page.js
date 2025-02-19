@@ -3,9 +3,9 @@ import { products } from '@/constants/data';
 import ShownProductCard from '@/components/component/card/ShownProductCard';
 import Sorting from './Sorting';
 import Link from 'next/link';
+import Pagination from './Pagination';
+import {  paginateProducts, sortOptions, sortProducts } from '@/lib/cashe';
 
-const sortOptions = ['Relevance', 'Trending', 'Latest Arrivals', 'Price: Low to High', 'Price: High to Low'];
-const ITEMS_PER_PAGE = 6;
 
 // Generate metadata for SEO
 export async function generateMetadata({ searchParams }) {
@@ -39,32 +39,17 @@ const Products = async ({ searchParams }) => {
     product.name.toLowerCase().includes(query?.toLowerCase() || '')
   );
 
-  // Sort products based on selected sort option
-  const sortedProducts = [...(query ? filteredProducts : products)].sort((a, b) => {
-    const priceA = parseFloat(a.price);
-    const priceB = parseFloat(b.price);
-    switch (sort) {
-      case 'Price: Low to High':
-        return priceA - priceB;
-      case 'Price: High to Low':
-        return priceB - priceA;
-      default:
-        return 0;
-    }
-  });
-
-  // Paginate products
+  const data = filteredProducts;
+  const sortedProducts = sortProducts(data, sort);
+  const ITEMS_PER_PAGE = 6;
   const totalPages = Math.ceil(sortedProducts.length / ITEMS_PER_PAGE);
-  const startIndex = (Number(page) - 1) * ITEMS_PER_PAGE;
-  const paginatedProducts = sortedProducts.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const paginatedProducts = paginateProducts(sortedProducts, Number(page), ITEMS_PER_PAGE);
 
   return (
     <div className="w-full lg:w-[80vw] p-6 bg-background-light rounded-lg shadow-md">
       
       {/* Title */}
-      <h1 className="text-3xl font-bold text-textColor-dark mb-6">
-        {query ? `Search Results for "${query}"` : 'All Products'}
-      </h1>
+      <h1 className="text-3xl font-bold text-textColor-dark mb-6"> {query ? `Search Results for "${query}"` : 'All Products'} </h1>
 
       {/* Sorting */}
       <Sorting sortOptions={sortOptions} selectedSort={sort} />
@@ -79,19 +64,8 @@ const Products = async ({ searchParams }) => {
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-center mt-8">
-        {Array.from({ length: totalPages }, (_, i) => (
-          <Link
-            key={i + 1}
-            href={`/products?search=${query}&sort=${sort}&page=${i + 1}`}
-            className={`mx-1 px-4 py-2 rounded-lg font-semibold transition-all duration-300 ${
-              Number(page) === i + 1 ? 'bg-primary-default text-white shadow-md' : 'bg-gray-200 hover:bg-primary-hover hover:text-white'
-            }`}
-          >
-            {i + 1}
-          </Link>
-        ))}
-      </div>
+      <Pagination  page = {page}  totalPages={totalPages} query={query} sort={sort} />
+
     </div>
   );
 };

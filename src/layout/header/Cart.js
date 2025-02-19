@@ -1,6 +1,6 @@
 'use client';
 
-import { X, Loader2, ShoppingCart } from 'lucide-react';
+import { X, Loader2, ShoppingCart, Link } from 'lucide-react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, clearCart, updateQuantity } from '@/redux/cartSlice';
 import { useToast } from '@/hooks/use-toast';
@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import ProductCart from '@/components/component/cartProduct/ProductCart';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
+import NextLink from '@/components/ui/NextLink';
 
 const Cart = ({ toggleCart, isCartOpen }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -70,7 +71,17 @@ const Cart = ({ toggleCart, isCartOpen }) => {
           {/* Scrollable Product List */}
           <div className="p-4 space-y-4 h-[calc(100%-200px)] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
             {cart.items.length === 0 ? (
-              <p className="text-center text-textColor-muted">Your cart is empty.</p>
+              <>
+               <p className="text-center text-textColor-muted">Your cart is empty.</p>
+               <Button 
+                type="submit" 
+                size='md'
+                onClick={ () => toggleCart() }
+                variant="primary">  
+                  <NextLink href ='/products'> Start Shopping </NextLink>
+              </Button> 
+              </>
+             
             ) : (
               cart.items.map((item, index) => (
                 <ProductCart
