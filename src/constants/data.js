@@ -11,15 +11,44 @@ const sizesForShoes = ['41', '42', '43', '44', '45', '46'];
 const sizesForJeans = ['46', '48', '50', '52', '54', '56'];
 
 // categories 
-export const categories = ['products', 'Hoodies', 'Shirts', 'Jeans'];
+export const categories = [ 'products',  'Hoodies', 'Shirts', 'Jeans' ,'Trendy' , 'Arrival' ];
 
 export  const links = [
   { name: 'Products', link: '/products' },
   { name: 'About', link: '/about' },
   { name: 'Contact', link: '/contact' },
+  { name: 'Support', link: '/support' },
 ];
 
-export const subLinks = ['Shirts', 'Jeans', 'Hoodies', 'Jacket'];
+export const subLinks = ['Shirts', 'Jeans', 'Hoodies', 'Jacket',  'Trendy' , 'Arrival'];
+
+export const SLIDES = [
+  {
+    img:'/images/shirt.png',
+    title:'Shirts',
+    link:'/products/shirts'
+  },
+  {
+    img:'/images/hoodie.png',
+    title:'Hoodie',
+    link:'/products/hoodies'
+  },
+  {
+    img:'/images/bag.png',
+    title:'Jeans',
+    link:'/products/jeans'
+  },
+  {
+    img:'/images/shirt.png',
+    title:'Jacket',
+    link:'/products/jacket'
+  },
+  {
+    img:'/images/shirt.png',
+    title:'Jeans',
+    link:'/products/shirts'
+  },
+  ]
 
 // Helper function to generate unique IDs
 let productIdCounter = 1;
@@ -1424,3 +1453,4 @@ export const accessories = [
     description: 'A simple and elegant T-shirt for casual outings.',
   },
 ];
+

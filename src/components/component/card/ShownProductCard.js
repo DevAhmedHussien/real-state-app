@@ -58,7 +58,7 @@ const ShownProductCard = ({ product, isPriority = false }) => {
       </div>
 
       {/* Product Info Section */}
-      <div className={`absolute bottom-2 right-2 bg-white bg-opacity-60 px-4 py-3 rounded-lg shadow-md backdrop-blur-md`}>
+      <div className='absolute bottom-2 right-2 bg-white bg-opacity-60 px-4 py-3 rounded-lg shadow-md backdrop-blur-md'>
         <h2 className="text-lg font-semibold text-primary-dark">{product.name}</h2>
         <div className="mt-1">{getStarRating(product.rating || 4.5)}</div>
         <div className="flex items-center justify-between gap-4 mt-2">

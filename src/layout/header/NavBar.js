@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { Menu, ChevronDown, ChevronUp } from 'lucide-react';
-import Link from 'next/link';
 import Image from 'next/image';
 
 import Cart from './Cart';
@@ -11,6 +10,7 @@ import SearchProduct from './SearchProduct';
 import { usePathname } from 'next/navigation';
 import ReduxProvider from '@/redux/ReduxProvider';
 import NextLink from '@/components/ui/NextLink';
+import { links, subLinks } from '@/constants/data';
 
 export default function Navbar() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -19,14 +19,6 @@ export default function Navbar() {
   const [isSubLinksVisible, setIsSubLinksVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const links = [
-    { name: 'Products', link: '/products' },
-    { name: 'About', link: '/about' },
-    { name: 'Contact', link: '/contact' },
-    { name: 'Support', link: '/support' },
-  ];
-
-  const subLinks = ['shirts', 'jeans', 'hoodies', 'jacket'];
 
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
@@ -63,9 +55,9 @@ export default function Navbar() {
           <div className="px-4 ">
             <div className="flex justify-between items-center h-16">
               
-              {/* Logo and Menu Toggle */}
-              <div className='flex items-center'>
-                <Link href="/" aria-label="Home page" title="Go to Home page">
+        {/* Logo and Menu Toggle */}
+            <div className='hidden sm:flex items-center'>
+                <NextLink href="/" aria-label="Home page" title="Go to Home page">
                   <Image
                     src={'/images/logo-icon.svg'}
                     alt={'Brand Logo'}
@@ -73,10 +65,10 @@ export default function Navbar() {
                     height={50}
                     // fill
                     className="object-cover transform hover:scale-105 transition-transform duration-300"
-                  // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  // priority={isPriority}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  priority={true}
                   />
-                </Link>
+                </NextLink>
               </div>
               
               {/* navbar */}
@@ -122,11 +114,11 @@ export default function Navbar() {
                             >
                               {subLinks.map((subLink, subIndex) => (
                                 <li key={subIndex}>
-                                  <Link href={`/products/${subLink}`}
+                                  <NextLink href={`/products/${subLink.toLowerCase()}`}
                                     className="block px-4 py-2 text-primary-dark hover:text-primary-hover transition-all duration-200"
                                   >
                                     {subLink}
-                                  </Link>
+                                  </NextLink>
                                 </li>
                               ))}
                             </ul>

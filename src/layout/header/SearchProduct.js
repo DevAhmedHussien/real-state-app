@@ -37,7 +37,7 @@ const SearchProduct = ({ searchQuery, setSearchQuery, toggleSearch, toggleCart, 
         {/* Search Input */}
         <div
           className={`transition-all duration-300 ease-in-out ${
-            isSearchOpen ? 'w-64 opacity-100 p-8' : 'w-0 opacity-0 p-8'
+            isSearchOpen ? 'w-60 sm:w-64  opacity-100 p-8' : 'w-0 opacity-0 p-8'
           }`}
         >
           <form onSubmit={handleSearchProp} className=" flex items-center">

@@ -1,11 +1,10 @@
-import AnimatedtedProducts from '@/components/component/ainmated-products/AnimatedtedProducts';
-import ShownProductCard from '@/components/component/card/ShownProductCard';
-import { products } from '@/constants/data';
-import Link from 'next/link';
+import { SLIDES, products } from '@/constants/data';
 import Head from 'next/head';
 import EmblaCarousel from '@/components/component/product-slider/EmblaCarousel';
 import HeroSection from '@/components/component/hero-section/HeroSection';
 import Categories from '@/components/component/categories/Categories';
+import NextLink from '@/components/ui/NextLink';
+import ProductSection from '@/components/component/product-section/ProductSection';
 
 // Metadata for SEO
 export const metadata = {
@@ -26,16 +25,6 @@ export const metadata = {
   },
 };
 
-const SLIDES = [
-  '/images/shirt.png',
-  '/images/shirt.png',
-  '/images/shirt.png',
-  '/images/shirt.png',
-  '/images/hoodie.png',
-  '/images/hoodie.png',
-  '/images/hoodie.png',
-  '/images/hoodie.png',
-]
 
 export default function ProductPage() {
   return (
@@ -52,47 +41,27 @@ export default function ProductPage() {
         <meta property="og:image:height" content={metadata.openGraph.images[0].height} />
         <meta property="og:image:alt" content={metadata.openGraph.images[0].alt} />
       </Head>
-
-        {/* container  mx-auto px-4 sm:px-6 lg:px-8 py-8 */}
-      <div className="">
-        {/* Main Heading */}
-        {/* <h1 className="text-3xl font-bold text-center mb-8">Welcome to My Awesome Store</h1> */}
-
         <HeroSection/>
         <Categories/>
 
-        {/* Product Grid */}
-        <div className='p-6'>
-          <h2 className="text-3xl text-primary-dark font-bold text-left">Trending this Season</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-              <div className="lg:col-span-3">
-                <Link key={products[0].id} href={`/look/${products[0].handlerName}`}>
-                  <ShownProductCard product={products[0]} />
-                </Link>
-              </div>
+        {/*  Product Section  Trending &&  Arrival*/}
+        <ProductSection title="Trending this Season" products={products} link="/products" />
+        <ProductSection title="Just Arrival" products={products} link="/products" reverseLayout />
 
-              {/* Right Side - 2/5 Width */}
-              <div className="lg:col-span-2 flex flex-col gap-6 h-full">
-                {products.slice(1, 3).map((product) => (
-                  <Link key={product.id} href={`/look/${product.handlerName}`}>
-                    <ShownProductCard product={product} />
-                  </Link>
-                ))}
-              </div>
-            </div>
-        </div>
-        
 
         {/* Animated Products Section */}
         <div className="mt-5 p-6">
-          <h2 className="text-3xl text-primary-dark font-bold text-left">Featured Products</h2>
+          <h2 className="text-3xl text-primary-dark mb-6 font-bold text-left">
+            Featured Products 
+            <span className="text-xl ml-5 text-primary-hover cursor-pointer hover:text-primary-dark underline transition-all delay-100 "> 
+            <NextLink href='/products' className='responsive-appbar-button'> all</NextLink> </span>
+          </h2> 
           {/* <AnimatedtedProducts /> */}
           <EmblaCarousel slides={SLIDES} />
         </div>
 
         <div className='mt-5'>
         </div>
-      </div>
     </>
   );
 }

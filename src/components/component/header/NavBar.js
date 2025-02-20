@@ -9,6 +9,7 @@ import SearchProduct from './SearchProduct';
 import ReduxProvider from '@/app/ReduxProvider';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
+import { links, subLinks } from '@/constants/data';
 
 export default function Navbar() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -16,14 +17,6 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSubLinksVisible, setIsSubLinksVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-
-  const links = [
-    { name: 'products', link: '/products' },
-    { name: 'about', link: '/about' },
-    { name: 'contact', link: '/contact' },
-  ];
-
-  const subLinks = ['shirts', 'jeans', 'hoodies', 'jacket'];
 
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);

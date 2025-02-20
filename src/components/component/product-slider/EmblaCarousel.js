@@ -2,19 +2,15 @@
 import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
-// import Autoplay from 'embla-carousel-autoplay'
 
 import {
     PrevButton,
     NextButton,
     usePrevNextButtons
 } from './ArrowButton'
-// import {
-//     SelectedSnapDisplay,
-//     useSelectedSnapDisplay
-// } from './SelectedSnapDisplay'
+
 import Image from 'next/image'
-import Link from 'next/link'
+import NextLink from '@/components/ui/NextLink';
 
 const EmblaCarousel = (props) => {
     const { slides  , categories = false} = props
@@ -63,28 +59,32 @@ const EmblaCarousel = (props) => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
                     >
-                {slides.map((image, index) => (
+                {slides.map((slide, index) => (
                     <motion.div
                         key={index}
                         transition={{ duration: 0.3 }}
-                        className={`${ categories && 'h-[30rem]' } embla__slide  relative min-w-80 min-h-120 border-2 border-transparent rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary-default h-full flex justify-center items-center bg-background-light`} 
+                        className={`${ categories && '!h-[31rem]' } embla__slide  relative min-w-80 min-h-120 border-2 border-transparent rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary-default h-full flex justify-center items-center bg-background-light`} 
                     >
-                        <Link href="product-details">
+                        <NextLink href={`${slide.link}`}>
                             <Image
-                                src={image}
+                                src={slide.img || null}
                                 alt={`Slide ${index + 1}`}
                                 width={categories ? 400 : 200}
                                 height={categories ? 400 : 200}
-                                className={`${!categories ? 'embla__slide__img' :'h-[100%] w-[100%]'}`}
+                                // className={`${!categories ? 'embla__slide__img' :'h-[100%] w-[100%]'}`}
                             />
-                        </Link>
+                        </NextLink>
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1, duration: 0.5 }}
-                            className='absolute bottom-4 right-4 bg-black bg-opacity-50 text-white p-2 rounded-lg'
+                            className='absolute bottom-2 right-2 bg-white bg-opacity-60 px-4 py-3 rounded-lg shadow-md backdrop-blur-md'
                         >
-                            Slide {index + 1}
+                            <h2 className="text-lg font-semibold text-primary-dark mb-1">{slide.title}</h2>
+                            <h2 className="text-sm font-semibold text-primary-dark">Amazing material with high quality </h2>
+
+
+
                         </motion.div>
                     </motion.div>
 ))}
@@ -95,10 +95,6 @@ const EmblaCarousel = (props) => {
                     <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
                     <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
                 </div>
-                {/* <SelectedSnapDisplay
-                    selectedSnap={selectedSnap}
-                    snapCount={snapCount}
-                /> */}
             </div>
         </section>
     )
