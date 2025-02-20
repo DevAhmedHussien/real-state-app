@@ -28,7 +28,7 @@ const SlideBar = () => {
     <div className="w-full lg:w-1/6 p-4 rounded-lg shadow-md"> 
       
       {/* Title */}
-      <h4 className="text-lg font-bold text-textColor-dark mb-4">Categories</h4>
+      <h4 className="text-lg font-bold text-primary-dark mb-4">Categories</h4>
       
       {/* Vertical Category List */}
       <ul className="space-y-2">
@@ -36,7 +36,7 @@ const SlideBar = () => {
           <li key={category}>
             <Link
               href={category === 'products' ? '/products' : `/products/${category.toLowerCase()}`}
-              className={`block px-4 py-2 rounded-lg text-sm text-textColor-dark font-medium transition-all duration-300 ${
+              className={`block px-4 py-2 rounded-lg text-sm text-primary-dark font-medium transition-all duration-300 ${
                 selectedCategory.toLowerCase() === category.toLowerCase()  
                   ? 'bg-primary-default  text-white shadow-md'
                   : 'bg-gray-200 hover:bg-primary-hover hover:text-white'

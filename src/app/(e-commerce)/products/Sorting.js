@@ -10,15 +10,18 @@ const Sorting = ({ sortOptions, selectedSort }) => {
   
   return (
     <div className="mb-6">
-      <label htmlFor="sort" className="mr-2">Sort by:</label>
+      <label htmlFor="sort" className="text-sm text-primary-dark mr-2">Sort by :</label>
       <select
         id="sort"
         value={selectedSort}
         onChange={handleSortChange}
-        className="p-2 border rounded"
+        className="text-sm text-primary-dark p-2 border rounded "
       >
         {sortOptions.map((option) => (
-          <option key={option} value={option}>
+          <option  
+            className="text-sm" 
+            key={option} 
+            value={option}>
             {option}
           </option>
         ))}

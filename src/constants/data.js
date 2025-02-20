@@ -10,7 +10,6 @@ const sizesForTshirt = ['sm', 'xs', 'm', 'lg', 'xl', 'xxl'];
 const sizesForShoes = ['41', '42', '43', '44', '45', '46'];
 const sizesForJeans = ['46', '48', '50', '52', '54', '56'];
 
-// categories 
 export const categories = [ 'products',  'Hoodies', 'Shirts', 'Jeans' ,'Trendy' , 'Arrival' ];
 
 export  const links = [

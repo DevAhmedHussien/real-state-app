@@ -50,13 +50,11 @@ export default async function Products({ params, searchParams }) {
   return (
     <div className="w-full lg:w-[80vw] p-3">
       
-      {/* Title */}
-      <h1 className="text-2xl font-bold text-textColor-dark mb-6 capitalize">{title} Collection</h1>
-
-      {/* Sorting */}
-      <Sorting sortOptions={sortOptions} selectedSort={sort} />
-
-      {/* Product Grid */}
+      <div className='flex justify-between items-center flex-wrap'>
+        <h1 className="text-2xl font-bold text-primary-dark mb-6 capitalize">{title} Collection</h1>
+        <Sorting sortOptions={sortOptions} selectedSort={sort} />
+      </div>
+     
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {paginatedProducts.map((product) => (
           <Link key={product.id} href={`/look/${product.handlerName}`} className="block">
@@ -65,7 +63,6 @@ export default async function Products({ params, searchParams }) {
         ))}
       </div>
 
-      {/* Pagination */}
       <Pagination  page = {page}  totalPages={totalPages}  sort={sort} title={title} />
     </div>
   );

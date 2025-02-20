@@ -29,7 +29,6 @@ export const metadata = {
 export default function ProductPage() {
   return (
     <>
-      {/* Add Metadata to the Head */}
       <Head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
@@ -58,9 +57,6 @@ export default function ProductPage() {
           </h2> 
           {/* <AnimatedtedProducts /> */}
           <EmblaCarousel slides={SLIDES} />
-        </div>
-
-        <div className='mt-5'>
         </div>
     </>
   );
