@@ -81,10 +81,12 @@ export default function SpecificProductLayout() {
         {/* Product Details */}
         <div className="space-y-6">
           {/* Product Name */}
-          <h1 className="text-3xl font-bold text-textColor-dark">{product.name}</h1>
+          <h1 className="text-3xl font-bold text-primary-dark">{product.name}</h1>
+          <h2 className="text-lg font-bold text-primary-dark">Description of Pucts and  material / quality bla bla Description of Pucts and  material / quality bla bla</h2>
+
 
           {/* Product Price */}
-          <p className="text-2xl font-bold text-labelColor-default">${product.price}</p>
+          <p className="text-2xl font-bold  text-primary-dark">${product.price}</p>
 
           {/* Color Options */}
           <div>
@@ -117,9 +119,9 @@ export default function SpecificProductLayout() {
                   onClick={() => setSelectedSize(size)}
                   variant={selectedSize === size ? 'outline' : 'ghost'}//outline
                   size="md"
-                  className="transition-all"
+                  className=" text-primary-dark transition-all"
                 >
-                  {selectedSize === size ? <CheckCircle size={16} className="mr-1" /> : null} {size}
+                  {selectedSize === size ? <CheckCircle size={16} className="mr-1 text-green-500" /> : null} {size}
                 </Button>
               ))}
             </div>

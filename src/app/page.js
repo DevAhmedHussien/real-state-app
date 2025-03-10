@@ -55,6 +55,7 @@ export default function ProductPage() {
             <span className="text-xl ml-5 text-primary-hover cursor-pointer hover:text-primary-dark underline transition-all delay-100 "> 
             <NextLink href='/products' className='responsive-appbar-button'> all</NextLink> </span>
           </h2> 
+          
           {/* <AnimatedtedProducts /> */}
           <EmblaCarousel slides={SLIDES} />
         </div>

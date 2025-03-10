@@ -19,7 +19,7 @@ export  const links = [
   { name: 'Support', link: '/support' },
 ];
 
-export const subLinks = ['Shirts', 'Jeans', 'Hoodies', 'Jacket',  'Trendy' , 'Arrival'];
+export const subLinks = ['Shirts', 'Jeans', 'Hoodies',   'Trendy' , 'Arrival'];
 
 export const SLIDES = [
   {
