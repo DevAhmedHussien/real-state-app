@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { Menu, ChevronDown, ChevronUp } from 'lucide-react';
 import Image from 'next/image';
 
-import Cart from './Cart';
 import MenuOpen from './MenuOpen';
 import SearchProduct from './SearchProduct';
 import { usePathname } from 'next/navigation';

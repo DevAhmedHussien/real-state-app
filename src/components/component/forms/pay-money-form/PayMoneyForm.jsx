@@ -2,15 +2,14 @@
 
 import { useState } from 'react';
 import { CheckCircle } from 'lucide-react';
-import ReduxProvider from '@/redux/ReduxProvider';
+// import ReduxProvider from '@/redux/ReduxProvider';
 import { validateEmail, validateFirstName, validateLastName, validateTelephone } from '@/constants/utils';
 
 import { Button } from '@/components/ui/button';
-import NewApartmentForm from '@/components/component/forms/new-appartment-form/NewApartmentForm';
 import ContactForm from './_steps/ContactForm';
 import ShippingForm from './_steps/ShippingForm';
 import PaymentForm from './_steps/PaymentForm';
-// import RightSide from '../new-appartment-form/RightSide';
+import RightSide from './RightSide';
 
 export default function Checkout() {
   const [step, setStep] = useState(1);
@@ -155,7 +154,6 @@ export default function Checkout() {
         </div>
       </div>
       {/* <newAppar */}
-      <NewApartmentForm/>
     </>
      
   );

@@ -23,7 +23,7 @@ const RightSide = () => {
       <div className="border-t border-gray-300 mt-4 pt-4">
         <h3 className="text-lg font-semibold text-textColor-dark flex justify-between">
           <span>Total:</span> 
-          <span className="text-textColor-dark">${cart.totalPrice.toFixed(2)}</span>
+          {/* <span className="text-textColor-dark">${cart.totalPrice.toFixed(2)}</span> */}
         </h3>
       </div>
 
