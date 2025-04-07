@@ -23,31 +23,67 @@ export const subLinks = ['Shirts', 'Jeans', 'Hoodies',   'Trendy' , 'Arrival'];
 
 export const SLIDES = [
   {
-    img:'/images/shirt.png',
-    title:'Shirts',
-    link:'/products/shirts'
+    img: '/images/cities/moscow.jpg',
+    title: 'Москва',
+    link: '/cities/moscow'
   },
   {
-    img:'/images/hoodie.png',
-    title:'Hoodie',
-    link:'/products/hoodies'
+    img: '/images/cities/saint-petersburg.jpg',
+    title: 'Санкт-Петербург',
+    link: '/cities/saint-petersburg'
   },
   {
-    img:'/images/bag.png',
-    title:'Jeans',
-    link:'/products/jeans'
+    img: '/images/cities/novosibirsk.jpg',
+    title: 'Новосибирск',
+    link: '/cities/novosibirsk'
   },
   {
-    img:'/images/shirt.png',
-    title:'Jacket',
-    link:'/products/jacket'
+    img: '/images/cities/yekaterinburg.jpg',
+    title: 'Екатеринбург',
+    link: '/cities/yekaterinburg'
   },
   {
-    img:'/images/shirt.png',
-    title:'Jeans',
-    link:'/products/shirts'
+    img: '/images/cities/kazan.jpg',
+    title: 'Казань',
+    link: '/cities/kazan'
   },
-  ]
+  {
+    img: '/images/cities/nizhny-novgorod.jpg',
+    title: 'Нижний Новгород',
+    link: '/cities/nizhny-novgorod'
+  },
+  {
+    img: '/images/cities/samara.jpg',
+    title: 'Самара',
+    link: '/cities/samara'
+  },
+  {
+    img: '/images/cities/omsk.jpg',
+    title: 'Омск',
+    link: '/cities/omsk'
+  },
+  {
+    img: '/images/cities/rostov-on-don.jpg',
+    title: 'Ростов-на-Дону',
+    link: '/cities/rostov-on-don'
+  },
+  {
+    img: '/images/cities/chelyabinsk.jpg',
+    title: 'Челябинск',
+    link: '/cities/chelyabinsk'
+  },
+  {
+    img: '/images/cities/ufa.jpg',
+    title: 'Уфа',
+    link: '/cities/ufa'
+  },
+  {
+    img: '/images/cities/volgograd.jpg',
+    title: 'Волгоград',
+    link: '/cities/volgograd'
+  },
+];
+
 
 // Helper function to generate unique IDs
 let productIdCounter = 1;

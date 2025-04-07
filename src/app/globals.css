@@ -103,7 +103,8 @@ a , button{
   height: 5%;
   bottom: 0;
   left: -100%;
-  background: linear-gradient(to right, #ECC94B 10%, #432F28);
+  /* background: linear-gradient(to right, #ECC94B 10%, #432F28); */
+  background: linear-gradient(to right, #54728C 10%, #2D2D2D);
   z-index: 0;
   transition: left 0.3s ease;
 }

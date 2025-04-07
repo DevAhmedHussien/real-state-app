@@ -4,7 +4,7 @@ import { hoodies, jeans, products, shirts, shoes } from '@/constants/data';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { useState } from 'react';
-import { addItem } from '@/redux/cartSlice';
+// import { addItem } from '@/redux/cartSlice';
 import { useDispatch } from 'react-redux';
 import { useToast } from '@/hooks/use-toast';
 import { ShoppingCart, CheckCircle } from "lucide-react"; // Import Icons
@@ -24,28 +24,28 @@ export default function SpecificProductLayout() {
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
 
-  const dispatch = useDispatch();
-  const { toast } = useToast();
+  // const dispatch = useDispatch();
+  // const { toast } = useToast();
 
   if (!product) {
     return <div className="text-center text-lg font-semibold text-red-500">Product not found</div>;
   }
 
   // Handle adding an item to the cart
-  const handleAddToCart = () => {
-    if (!selectedColor || !selectedSize) {
-      toast({ variant: 'destructive', title: 'Please select a color and size' });
-      return;
-    }
+  // const handleAddToCart = () => {
+  //   if (!selectedColor || !selectedSize) {
+  //     toast({ variant: 'destructive', title: 'Please select a color and size' });
+  //     return;
+  //   }
 
-    const updatedProduct = {
-      ...product,
-      selectedProduct: { color: selectedColor, size: selectedSize },
-    };
+  //   const updatedProduct = {
+  //     ...product,
+  //     selectedProduct: { color: selectedColor, size: selectedSize },
+  //   };
 
-    dispatch(addItem(updatedProduct));
-    toast({ variant: 'success', title: 'Product successfully added to cart' });
-  };
+  //   dispatch(addItem(updatedProduct));
+  //   toast({ variant: 'success', title: 'Product successfully added to cart' });
+  // };
 
   return (
     <div className="container min-h-[90vh] mt-20 mx-auto p-8">
@@ -132,7 +132,7 @@ export default function SpecificProductLayout() {
 
           {/* Add to Cart Button */}
           <Button
-            onClick={handleAddToCart}
+            // onClick={handleAddToCart}
             disabled={!selectedColor || !selectedSize} 
             variant='primary' 
             size='md'

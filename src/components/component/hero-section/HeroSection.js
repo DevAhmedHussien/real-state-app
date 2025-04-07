@@ -2,29 +2,46 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShoppingBag, Info } from "lucide-react";
+import { Home, Info } from "lucide-react";
 
 const slides = [
   {
-    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80",
-    title: "Elevate Your Style",
-    subtitle: "Premium fashion for all seasons",
+    image:
+      "https://images.unsplash.com/photo-1600585154340-2120b6e4cd4b?auto=format&fit=crop&w=2850&q=80",
+    title: "Find Your Perfect Apartment",
+    subtitle: "Spacious layouts, prime locations, affordable prices",
   },
   {
-    image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDR8fGVsZWN0cm9uaWNzfGVufDB8fHx8MTY1NTA3OTk1Mg&ixlib=rb-1.2.1&q=80&w=1080",
-    title: "Latest Electronics",
-    subtitle: "Upgrade to cutting-edge technology",
+    image:
+      "https://images.unsplash.com/photo-1600585154178-0600f22e6691?auto=format&fit=crop&w=2850&q=80",
+    title: "Luxury City Living",
+    subtitle: "Modern high-rises with stunning city views",
   },
   {
-    image: "https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fGZhc2hpb258ZW58MHx8fHwxNjU1MDc5ODc5&ixlib=rb-1.2.1&q=80&w=1080",
-    title: "Timeless Accessories",
-    subtitle: "Luxury watches & jewelry for you",
+    image:
+      "https://images.unsplash.com/photo-1600585163668-70d779d98d9e?auto=format&fit=crop&w=2850&q=80",
+    title: "Family-Friendly Homes",
+    subtitle: "Safe neighborhoods and spacious backyards",
   },
+];
+
+// Example list of cities
+const cityOptions = [
+  "Moscow",
+  "Saint Petersburg",
+  "Novosibirsk",
+  "Yekaterinburg",
+  "Kazan",
+  "Nizhny Novgorod",
+  "Samara",
+  "Rostov-on-Don",
 ];
 
 const HeroSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedCity, setSelectedCity] = useState(cityOptions[0]); // Default to the first city
 
+  // Rotate slides every 8 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % slides.length);
@@ -32,8 +49,14 @@ const HeroSection = () => {
     return () => clearInterval(interval);
   }, [currentIndex]);
 
+  // Handler for city selection
+  const handleCityChange = (e) => {
+    setSelectedCity(e.target.value);
+  };
+
   return (
     <div className="relative h-screen w-full overflow-hidden">
+      {/* Slide Images */}
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
@@ -51,51 +74,87 @@ const HeroSection = () => {
         </motion.div>
       </AnimatePresence>
 
-      <div className="absolute inset-0 bg-gradient-to-r from-primary-dark via-primary-light to-primary-hover opacity-30"></div>
+      {/* Optional overlay for better text visibility */}
+      <div className="absolute inset-0 bg-black bg-opacity-30"></div>
 
+      {/* Text & CTA */}
       <div className="relative z-10 flex flex-col justify-center items-center h-full px-6 text-white text-center">
+        {/* Title */}
         <motion.h1
+          key={slides[currentIndex].title}
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-5xl font-extrabold md:text-6xl text-primary-dark"
+          className="text-4xl md:text-6xl font-extrabold"
         >
           {slides[currentIndex].title}
         </motion.h1>
+
+        {/* Subtitle */}
         <motion.p
+          key={slides[currentIndex].subtitle}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-4 text-lg max-w-2xl text-primary-dark"
+          className="mt-4 text-lg md:text-xl max-w-2xl"
         >
           {slides[currentIndex].subtitle}
         </motion.p>
 
+        {/* City Selection */}
         <motion.div
+          className="mt-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="mt-6 flex flex-col sm:flex-row sm:justify-center space-y-4 sm:space-y-0 sm:space-x-4"
         >
-          <motion.a
-            href="#"
+          <label className="sr-only" htmlFor="citySelect">
+            Choose Your City
+          </label>
+          <motion.select
+            id="citySelect"
+            value={selectedCity}
+            onChange={handleCityChange}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-3 border border-transparent text-lg font-semibold rounded-lg text-white bg-[#432F28] hover:bg-[#E7B987] transition-all shadow-lg flex items-center gap-2"
+            className="px-6 py-3 text-lg font-medium rounded-lg bg-white text-gray-700 focus:outline-none shadow-md cursor-pointer"
+          >
+            {cityOptions.map((city) => (
+              <option key={city} value={city}>
+                {city}
+              </option>
+            ))}
+          </motion.select>
+        </motion.div>
+
+        <motion.div
+          className="mt-6 flex flex-col sm:flex-row sm:justify-center space-y-4 sm:space-y-0 sm:space-x-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.7 }}
+        >
+          {/* Primary CTA */}
+          <motion.a
+            href="#listings"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-8 py-3 text-lg font-semibold rounded-lg bg-[#3A3A3A] text-white hover:bg-[#5C5C5C] transition-all shadow-lg flex items-center gap-2"
           >
             <motion.div
               whileHover={{ rotate: [0, -10, 10, -10, 10, 0], scale: 1.2 }}
               transition={{ duration: 0.5 }}
             >
-              <ShoppingBag className="w-5 h-5" />
+              <Home className="w-5 h-5" />
             </motion.div>
-            Shop Now
+            Explore {selectedCity}
           </motion.a>
+
+          {/* Secondary CTA */}
           <motion.a
-            href="#"
+            href="#contact"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-3 border border-transparent text-lg font-semibold rounded-lg text-[#432F28] bg-[#FFEEBB] hover:bg-[#C49166] transition-all shadow-lg flex items-center gap-2"
+            className="px-8 py-3 text-lg font-semibold rounded-lg text-[#3A3A3A] bg-white hover:bg-gray-300 transition-all shadow-lg flex items-center gap-2"
           >
             <motion.div
               whileHover={{ rotate: [0, -10, 10, -10, 10, 0], scale: 1.2 }}
@@ -114,7 +173,7 @@ const HeroSection = () => {
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`w-3 h-3 rounded-full ${
-                index === currentIndex ? "bg-[#FFEEBB]" : "bg-[#C49166]"
+                index === currentIndex ? "bg-white" : "bg-gray-500"
               } transition-all duration-500 ease-in-out cursor-pointer`}
               animate={{
                 scale: index === currentIndex ? 1.2 : 1,

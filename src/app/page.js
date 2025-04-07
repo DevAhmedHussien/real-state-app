@@ -5,6 +5,7 @@ import HeroSection from '@/components/component/hero-section/HeroSection';
 import Categories from '@/components/component/categories/Categories';
 import NextLink from '@/components/ui/NextLink';
 import ProductSection from '@/components/component/product-section/ProductSection';
+import NewApartmentForm from '@/components/component/forms/new-appartment-form/NewApartmentForm';
 
 // Metadata for SEO
 export const metadata = {
@@ -44,8 +45,8 @@ export default function ProductPage() {
         <Categories/>
 
         {/*  Product Section  Trending &&  Arrival*/}
-        <ProductSection title="Trending this Season" products={products} link="/products" />
-        <ProductSection title="Just Arrival" products={products} link="/products" reverseLayout />
+        {/* <ProductSection title="Trending this Season" products={products} link="/products" />
+        <ProductSection title="Just Arrival" products={products} link="/products" reverseLayout /> */}
 
 
         {/* Animated Products Section */}
@@ -58,6 +59,7 @@ export default function ProductPage() {
           
           {/* <AnimatedtedProducts /> */}
           <EmblaCarousel slides={SLIDES} />
+
         </div>
     </>
   );

@@ -48,14 +48,14 @@ export default async function Products({ params, searchParams }) {
   const paginatedProducts = paginateProducts(sortedProducts, Number(page), ITEMS_PER_PAGE);
 
   return (
-    <div className="w-full lg:w-[80vw] p-3">
+    <div className="w-full p-3">
       
       <div className='flex justify-between items-center flex-wrap'>
         <h1 className="text-2xl font-bold text-primary-dark mb-6 capitalize">{title} Collection</h1>
         <Sorting sortOptions={sortOptions} selectedSort={sort} />
       </div>
      
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-6">
         {paginatedProducts.map((product) => (
           <Link key={product.id} href={`/look/${product.handlerName}`} className="block">
             <ShownProductCard key={product.id} product={product} />

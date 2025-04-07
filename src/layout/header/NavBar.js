@@ -8,7 +8,6 @@ import Cart from './Cart';
 import MenuOpen from './MenuOpen';
 import SearchProduct from './SearchProduct';
 import { usePathname } from 'next/navigation';
-import ReduxProvider from '@/redux/ReduxProvider';
 import NextLink from '@/components/ui/NextLink';
 import { links, subLinks } from '@/constants/data';
 
@@ -48,7 +47,6 @@ export default function Navbar() {
 
   return (
     <>
-      <ReduxProvider>
         {/* Navbar */}
         <header className="fixed top-0 left-0 w-full bg-background-default opacity-90 shadow-md z-50">
           {/* container mx-auto px-4 sm:px-6 lg:px-8 */}
@@ -166,20 +164,6 @@ export default function Navbar() {
           )}
         </header>
 
-        {/* Cart Sidebar */}
-        <Cart toggleCart={toggleCart} isCartOpen={isCartOpen} />
-
-        {/* Overlay when cart or menu is open */}
-        {(isCartOpen || isMenuOpen) && (
-          <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-40"
-            onClick={() => {
-              if (isCartOpen) toggleCart();
-              if (isMenuOpen) toggleMenu();
-            }}
-          />
-        )}
-      </ReduxProvider>
     </>
   );
 }

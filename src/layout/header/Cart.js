@@ -1,8 +1,5 @@
 'use client';
 
-import { X, Loader2, ShoppingCart, Link } from 'lucide-react';
-import { useSelector, useDispatch } from 'react-redux';
-import { removeItem, clearCart, updateQuantity } from '@/redux/cartSlice';
 import { useToast } from '@/hooks/use-toast';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -15,26 +12,7 @@ const Cart = ({ toggleCart, isCartOpen }) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
-  const cart = useSelector((state) => state.cart);
-  const dispatch = useDispatch();
 
-  // Handle removing an item from the cart
-  const handleRemoveItem = (id) => {
-    dispatch(removeItem(id));
-    toast({ variant: 'warning', title: 'Product removed from cart' });
-  };
-
-  // Handle clearing the entire cart
-  const handleClearCart = () => {
-    dispatch(clearCart());
-    toast({ variant: 'warning', title: 'Cart cleared successfully' });
-  };
-
-  // Handle updating the quantity of an item
-  const handleUpdateQuantity = (id, newQuantity) => {
-    if (newQuantity <= 1) handleRemoveItem(id);
-    dispatch(updateQuantity({ id, quantity: newQuantity }));
-  };
 
   // Handle checkout process
   const handleProceedToCheckout = () => {
@@ -47,7 +25,7 @@ const Cart = ({ toggleCart, isCartOpen }) => {
 
   return (
     <AnimatePresence>
-      {isCartOpen && (
+      {/* {isCartOpen && (
         <motion.div
           initial={{ x: '100%' }}
           animate={{ x: 0 }}
@@ -55,7 +33,6 @@ const Cart = ({ toggleCart, isCartOpen }) => {
           transition={{ duration: 0.3, ease: 'easeInOut' }}
           className="fixed top-0 right-0 w-80 h-full bg-background-default shadow-lg z-50"
         >
-          {/* Cart Header */}
           <div className="p-4 flex justify-between items-start bg-primary-default">
             <h2 className="text-2xl text-primary-dark ">Your Cart</h2>
             <motion.button
@@ -68,7 +45,6 @@ const Cart = ({ toggleCart, isCartOpen }) => {
             </motion.button>
           </div>
 
-          {/* Scrollable Product List */}
           <div className="p-4 space-y-4 h-[calc(100%-200px)] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
             {cart.items.length === 0 ? (
               <>
@@ -94,7 +70,6 @@ const Cart = ({ toggleCart, isCartOpen }) => {
             )}
           </div>
 
-          {/* Fixed Bottom Buttons */}
           {cart.items.length > 0 && (
             <motion.div
               initial={{ y: '100%' }}
@@ -102,13 +77,11 @@ const Cart = ({ toggleCart, isCartOpen }) => {
               transition={{ duration: 0.3, ease: 'easeInOut' }}
               className="absolute bottom-0 left-0 w-full bg-background-light border-t border-gray-300 p-4 shadow-md"
             >
-              {/* Cart Summary */}
               <div className="mb-3">
                 <p className="font-semibold text-textColor-dark">Total Items: {cart.totalQuantity}</p>
                 <p className="font-semibold text-textColor-hover text-lg">Total: ${cart.totalPrice}</p>
               </div>
 
-              {/* Buttons */}
               <div className="space-y-3">
                 <Button
                   variant="destructive"
@@ -138,7 +111,7 @@ const Cart = ({ toggleCart, isCartOpen }) => {
             </motion.div>
           )}
         </motion.div>
-      )}
+      )} */}
     </AnimatePresence>
   );
 };

@@ -2,12 +2,10 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation'; 
 import { ShoppingCart, Search, X, UserRound } from 'lucide-react';
-import { useSelector } from 'react-redux';
 import Input from '@/components/ui/input';
 
-const SearchProduct = ({ searchQuery, setSearchQuery, toggleSearch, toggleCart, isSearchOpen }) => {
+const SearchProduct = ({ searchQuery, setSearchQuery, toggleSearch, isSearchOpen }) => {
   
-  const cart = useSelector((state) => state.cart);
   const router = useRouter(); 
 
   // Handle search submission
@@ -26,9 +24,6 @@ const SearchProduct = ({ searchQuery, setSearchQuery, toggleSearch, toggleCart, 
     toggleSearch();
   };
 
-  const handleToggleCart = () => {
-    toggleCart();
-  };
 
   return (
     <div className="flex items-center gap-4">
@@ -74,21 +69,6 @@ const SearchProduct = ({ searchQuery, setSearchQuery, toggleSearch, toggleCart, 
         </button>
       </div>
 
-      {/* Cart Toggle */}
-      <button
-          onClick={handleToggleCart}
-          className="relative p-2 text-primary-dark hover:text-primary-hover transition-colors duration-300"
-        >
-          {/* Shopping Cart Icon */}
-          <ShoppingCart size={20} className='' />
-
-          {/* Cart Item Count Badge */}
-          {cart.items.length > 0 && (
-            <span className="absolute -top-1 -right-1 bg-primary-default text-white text-xs rounded-full px-1.5 py-0.5 opacity-75">
-              {cart.totalQuantity}
-            </span>
-          )}
-        </button>
 
       {/* Login Link */}
       <Link href="/login" className="text-gray-800 hover:text-primary-hover  transition-colors duration-300">

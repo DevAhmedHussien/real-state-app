@@ -1,8 +1,6 @@
 import ProductCart from '@/components/component/cartProduct/ProductCart';
-import { useSelector } from 'react-redux';
 
 const RightSide = () => {
-  const cart = useSelector((state) => state.cart);
 
   return (
     <div className="md:col-span-1 bg-background-light p-6 rounded-lg shadow-lg">
@@ -12,8 +10,8 @@ const RightSide = () => {
 
       {/* Cart Items */}
       <div className="max-h-80 overflow-y-auto no-scrollbar space-y-4 p-2">
-        {cart.items.length > 0 ? (
-          cart.items.map((item) => (
+        {[].length > 0 ? (
+          [].map((item) => (
             <ProductCart key={item.id} item={item} editable={false} />
           ))
         ) : (

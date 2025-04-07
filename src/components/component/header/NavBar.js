@@ -6,7 +6,6 @@ import Link from 'next/link';
 import Cart from './Cart';
 import MenuOpen from './MenuOpen';
 import SearchProduct from './SearchProduct';
-import ReduxProvider from '@/app/ReduxProvider';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { links, subLinks } from '@/constants/data';
@@ -51,7 +50,6 @@ export default function Navbar() {
 
   return (
     <>
-      <ReduxProvider>
         {/* Navbar */}
         <header className="fixed top-0 left-0 w-full bg-white shadow-md z-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -156,7 +154,6 @@ export default function Navbar() {
             }}
           />
         )}
-      </ReduxProvider>
     </>
   );
 }
