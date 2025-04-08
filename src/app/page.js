@@ -1,11 +1,9 @@
-import { SLIDES, cityOptions, products } from '@/constants/data';
+import {  cityOptions } from '@/constants/data';
 import Head from 'next/head';
 import EmblaCarousel from '@/components/component/product-slider/EmblaCarousel';
 import HeroSection from '@/components/component/hero-section/HeroSection';
 import Categories from '@/components/component/categories/Categories';
 import NextLink from '@/components/ui/NextLink';
-import ProductSection from '@/components/component/product-section/ProductSection';
-import NewApartmentForm from '@/components/component/forms/new-appartment-form/NewApartmentForm';
 
 // Metadata for SEO
 // Метаданные для SEO
@@ -53,11 +51,6 @@ export default function ProductPage() {
       </Head>
         <HeroSection/>
         <Categories/>
-
-        {/*  Product Section  Trending &&  Arrival*/}
-        {/* <ProductSection title="Trending this Season" products={products} link="/products" />
-        <ProductSection title="Just Arrival" products={products} link="/products" reverseLayout /> */}
-
 
         {/* Animated Products Section */}
         <div className="mt-5 p-6">

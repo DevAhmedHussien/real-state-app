@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Home, Info, ChevronDown } from "lucide-react";
 import { cityOptions } from "@/constants/data";
 import NextLink from "@/components/ui/NextLink";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const slides = [
   {
@@ -47,9 +48,10 @@ const HeroSection = () => {
     };
   }, [currentIndex]);
 
-  const handleCityChange = (e) => {
-    setSelectedCityKey(e.target.value);
+  const handleCityChange = (value) => {
+    setSelectedCityKey(value);
   };
+
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
@@ -94,26 +96,41 @@ const HeroSection = () => {
           </AnimatePresence>
 
           {/* City Selector */}
+  
           <motion.div
-            className="relative inline-block w-full max-w-xs"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-          >
-            <select
-              id="citySelect"
-              value={selectedCityKey}
-              onChange={handleCityChange}
-              className="w-full pl-6 pr-12 py-4 text-base bg-white/90 backdrop-blur-sm rounded-xl border-2 border-gray-200 focus:border-primary-default focus:ring-2 focus:ring-primary-default/30 outline-none transition-all appearance-none"
-            >
+        className="relative inline-block w-full max-w-xs"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.4 }}
+      >
+        <Select value={selectedCityKey} onValueChange={handleCityChange}>
+          <SelectTrigger className="w-full pl-2 pr-6 py-6 text-base bg-white/90 backdrop-blur-sm rounded-xl border-2 border-gray-200 hover:border-gray-300 focus:border-primary-default focus:ring-2 focus:ring-primary-default/30 outline-none transition-all shadow-sm hover:shadow-md">
+            <div className="flex items-center gap-2">
+              <span className="text-gray-500">{selectedCity?.flag}</span>
+              <SelectValue placeholder="Select a city" />
+            </div>
+          </SelectTrigger>
+          
+          <SelectContent className="rounded-xl border-2 border-gray-200 bg-white/95 backdrop-blur-sm shadow-xl">
+            <SelectGroup>
+              <SelectLabel className="px-4 py-2 text-sm font-semibold text-gray-500 border-b border-gray-200">
+                Available Cities
+              </SelectLabel>
               {cityOptions.map((city) => (
-                <option key={city.key} value={city.key}>
-                  {city.ru}
-                </option>
+                <SelectItem 
+                  key={city.key} 
+                  value={city.key}
+                  className=" data-[state=checked]:bg-primary-default/10 data-[highlighted]:bg-gray-100/50 transition-colors"
+                >
+                  <div className="">
+                    <span className="px-2 py-2 text-primary-default ">{city.ru}</span>
+                  </div>
+                </SelectItem>
               ))}
-            </select>
-            <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 pointer-events-none" />
-          </motion.div>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </motion.div>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
