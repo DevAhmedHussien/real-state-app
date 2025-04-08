@@ -1,4 +1,4 @@
-import { SLIDES, products } from '@/constants/data';
+import { SLIDES, cityOptions, products } from '@/constants/data';
 import Head from 'next/head';
 import EmblaCarousel from '@/components/component/product-slider/EmblaCarousel';
 import HeroSection from '@/components/component/hero-section/HeroSection';
@@ -8,21 +8,31 @@ import ProductSection from '@/components/component/product-section/ProductSectio
 import NewApartmentForm from '@/components/component/forms/new-appartment-form/NewApartmentForm';
 
 // Metadata for SEO
+// Метаданные для SEO
 export const metadata = {
-  title: 'Home | My Awesome Store',
-  description: 'Discover the best products at My Awesome Store. Shop now for amazing deals on fashion, electronics, and more!',
-  keywords: 'online store, fashion, electronics, deals, shopping',
+  title: 'X Real Estate | Найдите недвижимость мечты',
+  description: 'Ищете квартиру, дом или инвестиционную недвижимость? X Real Estate предлагает лучшие предложения в топовых районах. Покупка, аренда, продажа — всё в одном месте.',
+  keywords: 'недвижимость, купить квартиру, аренда дома, элитная недвижимость, инвестиции в недвижимость, квартиры на продажу, дома в аренду',
   openGraph: {
-    title: 'Home | My Awesome Store',
-    description: 'Discover the best products at My Awesome Store. Shop now for amazing deals on fashion, electronics, and more!',
+    title: 'X Real Estate | Элитные квартиры, дома и инвестиционные объекты',
+    description: 'Просматривайте актуальные предложения от X Real Estate. Мы подберем идеальную недвижимость для жизни или инвестиций.',
     images: [
       {
         url: '/images/home-og.jpg',
         width: 1200,
         height: 630,
-        alt: 'My Awesome Store',
+        alt: 'Недвижимость от X Real Estate — квартиры и дома',
       },
     ],
+    type: 'website',
+    locale: 'ru_RU',
+    url: 'https://www.xrealestate.com', // Замените на реальный URL
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'X Real Estate | Лучшие предложения недвижимости',
+    description: 'Ищете жильё или объект под инвестиции? Мы предлагаем только проверенные объекты в надёжных районах.',
+    images: ['/images/home-og.jpg'],
   },
 };
 
@@ -58,7 +68,7 @@ export default function ProductPage() {
           </h2> 
           
           {/* <AnimatedtedProducts /> */}
-          <EmblaCarousel slides={SLIDES} />
+          <EmblaCarousel slides={cityOptions} />
 
         </div>
     </>

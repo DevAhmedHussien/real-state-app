@@ -86,7 +86,7 @@ export default function Navbar() {
                       <li key={index} > 
                         {link.name === 'Products' ? (
                           <>
-                            <button
+                            {/* <button
                               onMouseEnter={() => setIsSubLinksVisible(true)}
                               onMouseLeave={() => setIsSubLinksVisible(false)}
                               className="text-primary-dark flex justify-center items-center gap-2 transition-all"
@@ -98,10 +98,9 @@ export default function Navbar() {
                               ) : (
                                 <ChevronDown size={16} />
                               )}
-                            </button>
+                            </button> */}
 
-                            {/* Submenu */}
-                            <ul
+                            {/* <ul
                               onMouseEnter={() => setIsSubLinksVisible(true)}
                               onMouseLeave={() => setIsSubLinksVisible(false)}
                               className={`fixed left-[10%]  w-[80vw] p-4 bg-background-default shadow-lg rounded-lg transition-all duration-300 ease-in-out transform ${isSubLinksVisible
@@ -118,7 +117,7 @@ export default function Navbar() {
                                   </NextLink>
                                 </li>
                               ))}
-                            </ul>
+                            </ul> */}
                           </>
                         ) : (
                           <button

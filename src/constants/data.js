@@ -13,7 +13,7 @@ const sizesForJeans = ['46', '48', '50', '52', '54', '56'];
 export const categories = [ 'products',  'Hoodies', 'Shirts', 'Jeans' ,'Trendy' , 'Arrival' ];
 
 export  const links = [
-  { name: 'Products', link: '/products' },
+  { name: 'cities', link: '/cities' },
   { name: 'About', link: '/about' },
   { name: 'Contact', link: '/contact' },
   { name: 'Support', link: '/support' },
@@ -21,56 +21,76 @@ export  const links = [
 
 export const subLinks = ['Shirts', 'Jeans', 'Hoodies',   'Trendy' , 'Arrival'];
 
+export  const cityOptions = [
+  { en: "Moscow", ru: "Москва", key: "moscow",  description:'Amazing material with high quality ' , link :'/city=moscow',  img: '/images/cities/moscow.jpg',},
+  { en: "Saint Petersburg", ru: "Санкт-Петербург", key: "saint-petersburg" , description:'Amazing material with high quality ' , link :'/city=moscow',  img: '/images/cities/moscow.jpg',},
+  { en: "Novosibirsk", ru: "Новосибирск", key: "novosibirsk"  , description:'Amazing material with high quality ' , link :'/city=moscow',  img: '/images/cities/moscow.jpg',},
+  { en: "Yekaterinburg", ru: "Екатеринбург", key: "yekaterinburg"  , description:'Amazing material with high quality ' , link :'/city=yekaterinburg',  img: '/images/cities/moscow.jpg',},
+  { en: "Kazan", ru: "Казань", key: "kazan"  , description:'Amazing material with high quality ' , link :'/city=moscow',  img: '/images/cities/moscow.jpg',},
+  { en: "Nizhny Novgorod", ru: "Нижний Новгород", key: "nizhny-novgorod"  ,  description:'Amazing material with high quality ', link :'/city=moscow',  img: '/images/cities/moscow.jpg',},
+  { en: "Samara", ru: "Самара", key: "samara"  , description:'Amazing material with high quality ' , link :'/city=moscow',  img: '/images/cities/moscow.jpg',},
+  { en: "Rostov-on-Don", ru: "Ростов-на-Дону", key: "rostov-on-don"  , description:'Amazing material with high quality' , link :'/city=moscow',  img: '/images/cities/moscow.jpg',},
+  { en: "Chelyabinsk", ru: "Челябинск", key: "chelyabinsk"  , description:'Amazing material with high quality ' , link :'/city=moscow',  img: '/images/cities/moscow.jpg',},
+  { en: "Omsk", ru: "Омск", key: "omsk", description:'Amazing material with high quality ' , link :'/city=moscow',  img: '/images/cities/moscow.jpg',},
+  { en: "Ufa", ru: "Уфа", key: "ufa"  , description:'Amazing material with high quality' , link :'/city=moscow',  img: '/images/cities/moscow.jpg',},
+  { en: "Krasnoyarsk", ru: "Красноярск", key: "krasnoyarsk"  , description:'Amazing material with high quality ' , link :'/city=moscow',  img: '/images/cities/moscow.jpg',},
+  { en: "Voronezh", ru: "Воронеж", key: "voronezh"  , description:'Amazing material with high quality' , link :'/city=moscow',  img: '/images/cities/moscow.jpg',},
+  { en: "Perm", ru: "Пермь", key: "perm"  , description:'Amazing material with high quality ' , link :'/city=moscow',  img: '/images/cities/moscow.jpg',},
+  { en: "Volgograd", ru: "Волгоград", key: "volgograd"  , description:'Amazing material with high quality ' , link :'/city=moscow',  img: '/images/cities/moscow.jpg',},
+  { en: "Tyumen", ru: "Тюмень", key: "tyumen" , description:'Amazing material with high quality ' , link :'/city=moscow',  img: '/images/cities/moscow.jpg',},
+];
+
 export const SLIDES = [
   {
     img: '/images/cities/moscow.jpg',
     title: 'Москва',
-    link: '/cities/moscow'
+    link: '/city?moscow',
+    description:''
   },
   {
     img: '/images/cities/saint-petersburg.jpg',
     title: 'Санкт-Петербург',
-    link: '/cities/saint-petersburg'
+    link: '/city?moscow',
   },
   {
     img: '/images/cities/novosibirsk.jpg',
     title: 'Новосибирск',
-    link: '/cities/novosibirsk'
+    link: '/city?moscow',
   },
   {
     img: '/images/cities/yekaterinburg.jpg',
     title: 'Екатеринбург',
-    link: '/cities/yekaterinburg'
+    link: '/city?moscow',
   },
   {
     img: '/images/cities/kazan.jpg',
     title: 'Казань',
-    link: '/cities/kazan'
+    link: '/city?moscow',
   },
   {
     img: '/images/cities/nizhny-novgorod.jpg',
     title: 'Нижний Новгород',
-    link: '/cities/nizhny-novgorod'
+    link: '/city?moscow',
   },
   {
     img: '/images/cities/samara.jpg',
     title: 'Самара',
-    link: '/cities/samara'
+    link: '/city?moscow',
   },
   {
     img: '/images/cities/omsk.jpg',
     title: 'Омск',
-    link: '/cities/omsk'
+    link: '/city?moscow',
   },
   {
     img: '/images/cities/rostov-on-don.jpg',
     title: 'Ростов-на-Дону',
-    link: '/cities/rostov-on-don'
+    link: '/city?moscow',
   },
   {
     img: '/images/cities/chelyabinsk.jpg',
     title: 'Челябинск',
-    link: '/cities/chelyabinsk'
+    link: '/city?moscow',
   },
   {
     img: '/images/cities/ufa.jpg',

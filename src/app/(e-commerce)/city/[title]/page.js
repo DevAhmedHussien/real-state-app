@@ -50,7 +50,7 @@ export default async function Products({ params, searchParams }) {
   return (
     <div className="w-full p-3">
       
-      <div className='flex justify-between items-center flex-wrap'>
+      {/* <div className='flex justify-between items-center flex-wrap'>
         <h1 className="text-2xl font-bold text-primary-dark mb-6 capitalize">{title} Collection</h1>
         <Sorting sortOptions={sortOptions} selectedSort={sort} />
       </div>
@@ -63,7 +63,7 @@ export default async function Products({ params, searchParams }) {
         ))}
       </div>
 
-      <Pagination  page = {page}  totalPages={totalPages}  sort={sort} title={title} />
+      <Pagination  page = {page}  totalPages={totalPages}  sort={sort} title={title} /> */}
     </div>
   );
 }

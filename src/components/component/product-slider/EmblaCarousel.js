@@ -80,8 +80,8 @@ const EmblaCarousel = (props) => {
                             transition={{ delay: index * 0.1, duration: 0.5 }}
                             className='absolute bottom-2 right-2 bg-white bg-opacity-60 px-4 py-3 rounded-lg shadow-md backdrop-blur-md'
                         >
-                            <h2 className="text-lg font-semibold text-primary-dark mb-1">{slide.title}</h2>
-                            <h2 className="text-sm font-semibold text-primary-dark">Amazing material with high quality </h2>
+                            <h2 className="text-lg font-semibold text-primary-dark mb-1">{slide.ru}</h2>
+                            <h2 className="text-sm font-semibold text-primary-dark">{slide.description}</h2>
 
 
 

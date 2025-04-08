@@ -6,7 +6,6 @@ import Link from 'next/link';
 import Pagination from './Pagination';
 import {  paginateProducts, sortOptions, sortProducts } from '@/lib/cashe';
 
-
 // Generate metadata for SEO
 export async function generateMetadata({ searchParams }) {
   const { sort = 'Relevance', page = 1, query = '' } = await searchParams;

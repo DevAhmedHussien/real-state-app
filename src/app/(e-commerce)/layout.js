@@ -1,6 +1,6 @@
 
 import "../globals.css";
-import SlideBar from "./products/SlideBar";
+import SlideBar from "./city/SlideBar";
 
 export const metadata = {
   title: "E-Commerce - Clothes Store",
