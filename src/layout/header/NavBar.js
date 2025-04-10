@@ -8,6 +8,7 @@ import SearchProduct from './SearchProduct';
 import { usePathname } from 'next/navigation';
 import NextLink from '@/components/ui/NextLink';
 import { links, subLinks } from '@/constants/data';
+import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -56,10 +57,13 @@ export default function Navbar() {
     return null;
   }
 
-  // const navigate = useNavigate();
+
+// Inside your component
+// const router = useRouter();
   const handleLogout = () => {
     setIsLoggedIn(false);
     setIsAvatarMenuOpen(false);
+    // router.push('/login');
     
     // Add actual logout logic here
   };

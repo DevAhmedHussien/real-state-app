@@ -10,10 +10,12 @@ import { Eye } from 'lucide-react';
 const EmblaCarousel = ({ slides, categories = false }) => {
   const [slidesToShow, setSlidesToShow] = useState(4);
   const [isHovered, setIsHovered] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const updateSlidesToShow = () => {
       const width = window.innerWidth;
+      setIsMobile(width < 768);
       if (width < 480) setSlidesToShow(1);
       else if (width < 768) setSlidesToShow(2);
       else if (width < 1024) setSlidesToShow(3);
@@ -37,40 +39,43 @@ const EmblaCarousel = ({ slides, categories = false }) => {
 
   return (
     <section className="embla group">
-      <div className="embla__viewport" ref={emblaRef}>
-        <motion.div 
-          className="embla__container flex h-[35rem]"
-          initial={{ opacity: 0 }} 
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          {slides.map((slide, index) => (
-            <motion.div
-              key={slide.key}
-              className="embla__slide relative min-w-80 min-h-120 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
-              onHoverStart={() => setIsHovered(index)}
-              onHoverEnd={() => setIsHovered(null)}
-            //   whileHover={{ scale: 1.1 }}
-            >
-              {/* <NextLink href={slide.link} className="block h-full w-full"> */}
-                <div className="relative h-full w-full">
-                  <Image
-                    src={slide.img}
-                    alt={`${slide.ru} - ${slide.description}`}
-                    fill
-                    priority
-                    quality={100}
-                    className={`object-cover transition-transform duration-500 hover:scale-105`}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isHovered === index ? 
-                      { opacity: 1, y: 0 } : 
-                      { opacity: 0, y: 20 }
-                    }
-                    className="absolute  z-20 bottom-0 left-0 right-0 rounded-lg p-6 bg-black to-transparent bg-opacity-50"
-                  >
+    <div className="embla__viewport" ref={emblaRef}>
+      <motion.div 
+        className="embla__container flex h-[35rem]"
+        initial={{ opacity: 0 }} 
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        {slides.map((slide, index) => (
+          <motion.div
+            key={slide.key}
+            className="embla__slide relative w-full md:min-w-80 min-h-120 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
+            onHoverStart={() => !isMobile && setIsHovered(index)}
+            onHoverEnd={() => !isMobile && setIsHovered(null)}
+            onTouchStart={() => setIsHovered(index)}
+            onTouchEnd={() => setIsHovered(null)}
+          >
+            <div className="relative h-full w-full">
+              <Image
+                src={slide.img}
+                alt={`${slide.ru} - ${slide.description}`}
+                fill
+                priority
+                quality={100}
+                className="object-cover transition-transform duration-500 hover:scale-105"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
+              
+              {/* Text Overlay */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={
+                  (isMobile || isHovered === index) 
+                  ? { opacity: 1, y: 0 } 
+                  : { opacity: 0, y: 20 }
+                }
+                className="absolute z-20 bottom-0 left-0 right-0 rounded-lg p-4 md:p-6 bg-black/50"
+              >
                     <div className="space-y-2 text-white ">
                         <NextLink href={slide.link} className="flex justify-normal items-start gap-3">
                             <motion.h2 
