@@ -10,6 +10,29 @@ export const formatCurrency = (number) => {
 
 export const categories = [ 'products',  'Hoodies', 'Shirts', 'Jeans' ,'Trendy' , 'Arrival' ];
 
+
+// hero section data 
+export const slides = [
+  {
+    image: "/images/hero/hero.jpg",
+    title: "Идеальная квартира вашей мечты",
+    subtitle: "Просторные планировки — престижные районы — привлекательные цены", 
+  },
+  {
+    image: "/images/hero/hero2.jpg",
+    title: "Элитная недвижимость в центре города",
+    subtitle: "Современные небоскребы с завораживающими видами на город", 
+  },
+  {
+    image: "/images/hero/hero3.jpg",
+    title: "Уютные дома для вашей семьи",
+    subtitle: "Безопасные районы и благоустроенные территории для детей", 
+  },
+];
+
+
+
+
 export  const links = [
   // { name: 'cities', link: '/cities' },
   { name: 'About', link: '/about' },
@@ -19,94 +42,26 @@ export  const links = [
 
 export const subLinks = ['Shirts', 'Jeans', 'Hoodies',   'Trendy' , 'Arrival'];
 
-export  const cityOptions = [
-  { en: "Moscow", ru: "Москва", key: "moscow",  description:'Amazing material with high quality ' , link :'/city=moscow',  img: '/images/cities/moscow.jpg',},
-  { en: "Saint Petersburg", ru: "Санкт-Петербург", key: "saint-petersburg" , description:'Amazing material with high quality ' , link :'/city=saint-petersburg',  img: '/images/cities/moscow.jpg',},
-  { en: "Novosibirsk", ru: "Новосибирск", key: "novosibirsk"  , description:'Amazing material with high quality ' , link :'/city=novosibirsk',  img: '/images/cities/moscow.jpg',},
-  { en: "Yekaterinburg", ru: "Екатеринбург", key: "yekaterinburg"  , description:'Amazing material with high quality ' , link :'/city=yekaterinburg',  img: '/images/cities/moscow.jpg',},
-  { en: "Kazan", ru: "Казань", key: "kazan"  , description:'Amazing material with high quality ' , link :'/city=kazan',  img: '/images/cities/moscow.jpg',},
-  { en: "Nizhny Novgorod", ru: "Нижний Новгород", key: "nizhny-novgorod"  ,  description:'Amazing material with high quality ', link :'/city=nizhny-novgorod',  img: '/images/cities/moscow.jpg',},
-  { en: "Samara", ru: "Самара", key: "samara"  , description:'Amazing material with high quality ' , link :'/city=samara',  img: '/images/cities/moscow.jpg',},
-  { en: "Rostov-on-Don", ru: "Ростов-на-Дону", key: "rostov-on-don"  , description:'Amazing material with high quality' , link :'/city=rostov-on-don',  img: '/images/cities/moscow.jpg',},
-  { en: "Chelyabinsk", ru: "Челябинск", key: "chelyabinsk"  , description:'Amazing material with high quality ' , link :'/city=chelyabinsk',  img: '/images/cities/moscow.jpg',},
-  { en: "Omsk", ru: "Омск", key: "omsk", description:'Amazing material with high quality ' , link :'/city=omsk',  img: '/images/cities/moscow.jpg',},
-  { en: "Ufa", ru: "Уфа", key: "ufa"  , description:'Amazing material with high quality' , link :'/city=ufa',  img: '/images/cities/moscow.jpg',},
-  { en: "Krasnoyarsk", ru: "Красноярск", key: "krasnoyarsk"  , description:'Amazing material with high quality ' , link :'/city=krasnoyarsk',  img: '/images/cities/moscow.jpg',},
-  { en: "Voronezh", ru: "Воронеж", key: "voronezh"  , description:'Amazing material with high quality' , link :'/city=voronezh',  img: '/images/cities/moscow.jpg',},
-  { en: "Perm", ru: "Пермь", key: "perm"  , description:'Amazing material with high quality ' , link :'/city=perm',  img: '/images/cities/moscow.jpg',},
-  { en: "Volgograd", ru: "Волгоград", key: "volgograd"  , description:'Amazing material with high quality ' , link :'/city=volgograd',  img: '/images/cities/moscow.jpg',},
-  { en: "Tyumen", ru: "Тюмень", key: "tyumen" , description:'Amazing material with high quality ' , link :'/city=tyumen',  img: '/images/cities/moscow.jpg',},
-];
+export const cityOptions = [  
+  { en: "Moscow", ru: "Москва", key: "moscow", description: 'Сердце России: элитная недвижимость у Кремля и престижные новостройки с видом на парки', link: '/city=moscow', img: '/images/cities/moscow.jpg' },  
+  { en: "Saint Petersburg", ru: "Санкт-Петербург", key: "saint-petersburg", description: 'Северная Венеция: апартаменты с видом на Неву и исторические дворцы в центре города', link: '/city=saint-petersburg', img: '/images/cities/saint-petersburg.jpg' },  
+  { en: "Novosibirsk", ru: "Новосибирск", key: "novosibirsk", description: 'Столица Сибири: современные ЖК у Обского моря и уютные дома в зеленых районах', link: '/city=novosibirsk', img: '/images/cities/novosibirsk.jpg' },  
+  { en: "Yekaterinburg", ru: "Екатеринбург", key: "yekaterinburg", description: 'Город на границе Европы и Азии: лофты в стиле хай-тек и виды на Уральские горы', link: '/city=yekaterinburg', img: '/images/cities/yekaterinburg.jpg' },  
+  { en: "Kazan", ru: "Казань", key: "kazan", description: 'Слияние культур: квартиры с видом на Казанский Кремль и таунхаусы у озера Кабан', link: '/city=kazan', img: '/images/cities/kazan.jpg' },  
+  { en: "Nizhny Novgorod", ru: "Нижний Новгород", key: "nizhny-novgorod", description: 'Жемчужина Волги: апартаменты в историческом центре и новостройки с панорамой реки', link: '/city=nizhny-novgorod', img: '/images/cities/nizhny-novgorod.jpg' },  
+  { en: "Samara", ru: "Самара", key: "samara", description: 'Город-курорт: жилье у самой длинной набережной Европы и современные ЖК с инфраструктурой', link: '/city=samara', img: '/images/cities/samara.jpg' },  
+  { en: "Rostov-on-Don", ru: "Ростов-на-Дону", key: "rostov-on-don", description: 'Южная столица: дома в стиле классицизма и новостройки с видом на Дон', link: '/city=rostov-on-don', img: '/images/cities/rostov.jpg' },  
+  { en: "Chelyabinsk", ru: "Челябинск", key: "chelyabinsk", description: 'Опорный край Урала: квартиры с панорамными окнами и коттеджи у лесных массивов', link: '/city=chelyabinsk', img: '/images/cities/chelyabinsk.jpg' },  
+  { en: "Omsk", ru: "Омск", key: "omsk", description: 'Сибирская классика: старинные особняки и современные комплексы у Иртыша', link: '/city=omsk', img: '/images/cities/omsk.jpg' },  
+  { en: "Ufa", ru: "Уфа", key: "ufa", description: 'Город у слияния рек: жилье в экологически чистых районах с парками и набережными', link: '/city=ufa', img: '/images/cities/Ufa.jpg' },  
+  { en: "Krasnoyarsk", ru: "Красноярск", key: "krasnoyarsk", description: 'Ворота Саян: апартаменты с видом на Енисей и эко-комплексы у заповедника «Столбы»', link: '/city=krasnoyarsk', img: '/images/cities/krasnoyarsk.jpg' },  
+  { en: "Voronezh", ru: "Воронеж", key: "voronezh", description: 'Колыбель флота: реконструированные сталинки и современные ЖК у Воронежского водохранилища', link: '/city=voronezh', img: '/images/cities/voronezh.jpg' },  
+  { en: "Perm", ru: "Пермь", key: "perm", description: 'Город на Каме: лофты в индустриальном стиле и жилье с видом на Уральские предгорья', link: '/city=perm', img: '/images/cities/perm.jpg' },  
+  { en: "Volgograd", ru: "Волгоград", key: "volgograd", description: 'Город-герой: квартиры с панорамой Волги и новостройки у Мамаева кургана', link: '/city=volgograd', img: '/images/cities/volgograd.jpg' },  
+  { en: "Tyumen", ru: "Тюмень", key: "tyumen", description: 'Нефтяная столица: элитные комплексы с СПА-зонами и уютные дома в историческом центре', link: '/city=tyumen', img: '/images/cities/tyumen.jpg' },  
+];  
 
-// export const SLIDES = [
-//   {
-//     img: '/images/cities/moscow.jpg',
-//     title: 'Москва',
-//     link: '/city?moscow',
-//     description:''
-//   },
-//   {
-//     img: '/images/cities/saint-petersburg.jpg',
-//     title: 'Санкт-Петербург',
-//     link: '/city?moscow',
-//   },
-//   {
-//     img: '/images/cities/novosibirsk.jpg',
-//     title: 'Новосибирск',
-//     link: '/city?moscow',
-//   },
-//   {
-//     img: '/images/cities/yekaterinburg.jpg',
-//     title: 'Екатеринбург',
-//     link: '/city?moscow',
-//   },
-//   {
-//     img: '/images/cities/kazan.jpg',
-//     title: 'Казань',
-//     link: '/city?moscow',
-//   },
-//   {
-//     img: '/images/cities/nizhny-novgorod.jpg',
-//     title: 'Нижний Новгород',
-//     link: '/city?moscow',
-//   },
-//   {
-//     img: '/images/cities/samara.jpg',
-//     title: 'Самара',
-//     link: '/city?moscow',
-//   },
-//   {
-//     img: '/images/cities/omsk.jpg',
-//     title: 'Омск',
-//     link: '/city?moscow',
-//   },
-//   {
-//     img: '/images/cities/rostov-on-don.jpg',
-//     title: 'Ростов-на-Дону',
-//     link: '/city?moscow',
-//   },
-//   {
-//     img: '/images/cities/chelyabinsk.jpg',
-//     title: 'Челябинск',
-//     link: '/city?moscow',
-//   },
-//   {
-//     img: '/images/cities/ufa.jpg',
-//     title: 'Уфа',
-//     link: '/cities/ufa'
-//   },
-//   {
-//     img: '/images/cities/volgograd.jpg',
-//     title: 'Волгоград',
-//     link: '/cities/volgograd'
-//   },
-// ];
-
-
-// Helper function to generate unique IDs
-let productIdCounter = 1;
-
-export const products = Array.from({ length: 10 }, (_, i) => ({
+export const products = Array.from({ length: 20 }, (_, i) => ({
   id: 100 + i,
   title: [
     "Modern Studio in City Center",
@@ -163,6 +118,7 @@ export const products = Array.from({ length: 10 }, (_, i) => ({
     parkingType: ["Underground", "Guarded", "Street", "None"][i % 4]
   },
 
+  // Удобства
   amenities: [
     ["Wi-Fi", "Smart TV", "Air conditioning", "Washing machine"],
     ["Wi-Fi", "Cable TV", "Dishwasher", "Dryer"],
@@ -176,6 +132,7 @@ export const products = Array.from({ length: 10 }, (_, i) => ({
     ["Wi-Fi", "Vintage furniture", "Library", "Fireplace"]
   ][i],
 
+  // Описание дома
   houseDescription: [
     ["Elevator", "Security", "Playground", "Fitness center"],
     ["Concierge", "Underground parking", "Pool", "Spa"],

@@ -2,44 +2,32 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Home, Info, ChevronDown } from "lucide-react";
-import { cityOptions } from "@/constants/data";
+import { Home, Info, ChevronDown, Check, ChevronsUpDown } from "lucide-react";
+import { cityOptions, slides } from "@/constants/data";
 import NextLink from "@/components/ui/NextLink";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { SelectFramer } from "../product-slider/SelectFramer";
 
-const slides = [
-  {
-    image: "https://images.unsplash.com/photo-1600585154340-2120b6e4cd4b?auto=format&fit=crop&w=2850&q=80",
-    title: "Find Your Perfect Apartment",
-    subtitle: "Spacious layouts, prime locations, affordable prices",
-  },
-  {
-    image: "https://images.unsplash.com/photo-1600585154178-0600f22e6691?auto=format&fit=crop&w=2850&q=80",
-    title: "Luxury City Living",
-    subtitle: "Modern high-rises with stunning city views",
-  },
-  {
-    image: "https://images.unsplash.com/photo-1600585163668-70d779d98d9e?auto=format&fit=crop&w=2850&q=80",
-    title: "Family-Friendly Homes",
-    subtitle: "Safe neighborhoods and spacious backyards",
-  },
-];
 
 const HeroSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedCityKey, setSelectedCityKey] = useState(cityOptions[0].key);
   const [progress, setProgress] = useState(0);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   const selectedCity = cityOptions.find(city => city.key === selectedCityKey);
 
+  // Auto-rotation effect
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % slides.length);
-      setProgress(0); 
+      setCurrentIndex(prev => (prev + 1) % slides.length);
+      setProgress(0);
     }, 8000);
 
     const progressInterval = setInterval(() => {
-      setProgress((prev) => Math.min(prev + 100 / 80, 100));
+      setProgress(prev => Math.min(prev + 100 / 80, 100));
     }, 100);
 
     return () => {
@@ -48,14 +36,14 @@ const HeroSection = () => {
     };
   }, [currentIndex]);
 
-  const handleCityChange = (value) => {
-    setSelectedCityKey(value);
+  const handleCitySelect = (cityKey) => {
+    setSelectedCityKey(cityKey);
+    setIsPopoverOpen(false);
   };
-
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      {/* Background Slides */}
+      {/* Animated Background */}
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
@@ -65,7 +53,11 @@ const HeroSection = () => {
           transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
           className="absolute inset-0"
         >
-          <img
+          <Image
+            width={1200}
+            height={1000}
+            quality={100}
+            priority
             src={slides[currentIndex].image}
             alt={slides[currentIndex].title}
             className="w-full h-full object-cover"
@@ -86,61 +78,32 @@ const HeroSection = () => {
               exit={{ opacity: 0, y: -40 }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
             >
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white drop-shadow-xl">
+              <h1 className="text-2xl md:text-5xl font-bold tracking-tight text-white drop-shadow-xl">
                 {slides[currentIndex].title}
               </h1>
-              <p className="mt-4 md:mt-6 text-lg md:text-xl text-gray-100 max-w-2xl mx-auto leading-relaxed">
+              <p className="mt-4 md:mt-6 text-lg md:text-lg text-gray-100 max-w-2xl mx-auto leading-relaxed">
                 {slides[currentIndex].subtitle}
               </p>
             </motion.div>
           </AnimatePresence>
 
-          {/* City Selector */}
-  
+          {/* Enhanced City Selector */}
           <motion.div
-        className="relative inline-block w-full max-w-xs"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
-      >
-        <Select value={selectedCityKey} onValueChange={handleCityChange}>
-          <SelectTrigger className="w-full pl-2 pr-6 py-6 text-base bg-white/90 backdrop-blur-sm rounded-xl border-2 border-gray-200 hover:border-gray-300 focus:border-primary-default focus:ring-2 focus:ring-primary-default/30 outline-none transition-all shadow-sm hover:shadow-md">
-            <div className="flex items-center gap-2">
-              <span className="text-gray-500">{selectedCity?.flag}</span>
-              <SelectValue placeholder="Select a city" />
-            </div>
-          </SelectTrigger>
+            className="relative inline-block w-full max-w-xs"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+          >
           
-          <SelectContent className="rounded-xl border-2 border-gray-200 bg-white/95 backdrop-blur-sm shadow-xl">
-            <SelectGroup>
-              <SelectLabel className="px-4 py-2 text-sm font-semibold text-gray-500 border-b border-gray-200">
-                Available Cities
-              </SelectLabel>
-              {cityOptions.map((city) => (
-                <SelectItem 
-                  key={city.key} 
-                  value={city.key}
-                  className=" data-[state=checked]:bg-primary-default/10 data-[highlighted]:bg-gray-100/50 transition-colors"
-                >
-                  <div className="">
-                    <span className="px-2 py-2 text-primary-default ">{city.ru}</span>
-                  </div>
-                </SelectItem>
-              ))}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-      </motion.div>
+            <SelectFramer handleCitySelect={handleCitySelect} isPopoverOpen={isPopoverOpen} setIsPopoverOpen={setIsPopoverOpen}selectedCityKey={selectedCityKey} selectedCity={selectedCity} />
+          </motion.div>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
-            <motion.div
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.98 }}
-            >
+            <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
               <NextLink
                 href={selectedCity?.link || '#'}
-                className="flex items-center justify-center gap-3 px-8 py-4 bg-primary-default hover:bg-primary-dark text-white font-semibold rounded-xl shadow-lg shadow-primary-default/20 transition-colors"
+                className="flex items-center justify-center gap-3 px-8 py-4 bg-primary-default hover:bg-primary-dark text-white font-semibold rounded-md shadow-lg shadow-primary-default/20 transition-all"
               >
                 <Home className="w-5 h-5" />
                 Explore {selectedCity?.ru}
@@ -151,7 +114,7 @@ const HeroSection = () => {
               href="#contact"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="flex items-center justify-center gap-3 px-8 py-4 bg-white hover:bg-gray-50 text-gray-900 font-semibold rounded-xl shadow-lg shadow-gray-900/10 transition-colors"
+              className="flex items-center justify-center gap-3 px-8 py-4 bg-white hover:bg-gray-50 text-gray-900 font-semibold rounded-md shadow-lg shadow-gray-900/10 transition-colors"
             >
               <Info className="w-5 h-5" />
               Learn More
@@ -169,7 +132,7 @@ const HeroSection = () => {
                   setCurrentIndex(index);
                   setProgress(0);
                 }}
-                className="relative h-1 w-8 rounded-full bg-white/30 overflow-hidden"
+                className="relative h-1.5 w-8 rounded-full bg-white/30 overflow-hidden"
                 aria-label={`Slide ${index + 1}`}
               >
                 {index === currentIndex && (

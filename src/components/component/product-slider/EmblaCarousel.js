@@ -1,104 +1,119 @@
-"use client"
+"use client";
 import { motion } from 'framer-motion';
-import React, { useEffect, useState } from 'react'
-import useEmblaCarousel from 'embla-carousel-react'
-
-import {
-    PrevButton,
-    NextButton,
-    usePrevNextButtons
-} from './ArrowButton'
-
-import Image from 'next/image'
+import React, { useEffect, useState } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
+import { PrevButton, NextButton, usePrevNextButtons } from './ArrowButton';
+import Image from 'next/image';
 import NextLink from '@/components/ui/NextLink';
+import { Eye } from 'lucide-react';
 
-const EmblaCarousel = (props) => {
-    const { slides  , categories = false} = props
-    const [slidesToShow, setSlidesToShow] = useState(1)
+const EmblaCarousel = ({ slides, categories = false }) => {
+  const [slidesToShow, setSlidesToShow] = useState(4);
+  const [isHovered, setIsHovered] = useState(null);
 
-    useEffect(() => {
-        const updateSlidesToShow = () => {
-            if (window.innerWidth < 480) {
-                setSlidesToShow(1) // Mobile: Show 1 slide
-            } else if (window.innerWidth < 768) {
-                setSlidesToShow(2) // Tablets: Show 2 slides
-            } else if (window.innerWidth < 1024) {
-                setSlidesToShow(3) // Small screens: Show 3 slides
-            } else {
-                setSlidesToShow(4) // Default: Show 4 slides
-            }
-        }
+  useEffect(() => {
+    const updateSlidesToShow = () => {
+      const width = window.innerWidth;
+      if (width < 480) setSlidesToShow(1);
+      else if (width < 768) setSlidesToShow(2);
+      else if (width < 1024) setSlidesToShow(3);
+      else setSlidesToShow(4);
+    };
 
-        updateSlidesToShow() // Run initially
-        window.addEventListener('resize', updateSlidesToShow) // Listen for resizes
+    updateSlidesToShow();
+    window.addEventListener('resize', updateSlidesToShow);
+    return () => window.removeEventListener('resize', updateSlidesToShow);
+  }, []);
 
-        return () => window.removeEventListener('resize', updateSlidesToShow) // Cleanup
-    }, [])
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    dragFree: true,
+    loop: false,
+    align: 'start',
+    slidesToScroll: 1,
+    slidesToShow,
+  });
 
-    const [emblaRef, emblaApi] = useEmblaCarousel({
-        dragFree: true,
-        loop: false,
-        align: 'start',
-        slidesToScroll: 1,
-        slidesToShow, // Dynamically controlled
-    })
+  const { prevBtnDisabled, nextBtnDisabled, onPrevButtonClick, onNextButtonClick } = usePrevNextButtons(emblaApi);
 
-    const {
-        prevBtnDisabled,
-        nextBtnDisabled,
-        onPrevButtonClick,
-        onNextButtonClick
-    } = usePrevNextButtons(emblaApi)
-    // const { selectedSnap, snapCount } = useSelectedSnapDisplay(emblaApi)
-    return (
-        <section className="embla">
-            <div className="embla__viewport" ref={emblaRef}>
-            <motion.div 
-                className="embla__container flex"
-                initial={{ opacity: 0 }} 
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
-                    >
-                {slides.map((slide, index) => (
-                    <motion.div
-                        key={index}
-                        transition={{ duration: 0.3 }}
-                        className={`${ categories && '!h-[31rem]' } embla__slide  relative min-w-80 min-h-120 border-2 border-transparent rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary-default h-full flex justify-center items-center bg-background-light`} 
-                    >
-                        <NextLink href={`${slide.link}`}>
-                            <Image
-                                src={slide.img || null}
-                                alt={`Slide ${index + 1}`}
-                                width={categories ? 400 : 200}
-                                height={categories ? 400 : 200}
-                                // className={`${!categories ? 'embla__slide__img' :'h-[100%] w-[100%]'}`}
-                            />
-                        </NextLink>
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1, duration: 0.5 }}
-                            className='absolute bottom-2 right-2 bg-white bg-opacity-60 px-4 py-3 rounded-lg shadow-md backdrop-blur-md'
-                        >
-                            <h2 className="text-lg font-semibold text-primary-dark mb-1">{slide.ru}</h2>
-                            <h2 className="text-sm font-semibold text-primary-dark">{slide.description}</h2>
+  return (
+    <section className="embla group">
+      <div className="embla__viewport" ref={emblaRef}>
+        <motion.div 
+          className="embla__container flex h-[35rem]"
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          {slides.map((slide, index) => (
+            <motion.div
+              key={slide.key}
+              className="embla__slide relative min-w-80 min-h-120 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
+              onHoverStart={() => setIsHovered(index)}
+              onHoverEnd={() => setIsHovered(null)}
+            //   whileHover={{ scale: 1.1 }}
+            >
+              {/* <NextLink href={slide.link} className="block h-full w-full"> */}
+                <div className="relative h-full w-full">
+                  <Image
+                    src={slide.img}
+                    alt={`${slide.ru} - ${slide.description}`}
+                    fill
+                    priority
+                    quality={100}
+                    className={`object-cover transition-transform duration-500 hover:scale-105`}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isHovered === index ? 
+                      { opacity: 1, y: 0 } : 
+                      { opacity: 0, y: 20 }
+                    }
+                    className="absolute  z-20 bottom-0 left-0 right-0 rounded-lg p-6 bg-black to-transparent bg-opacity-50"
+                  >
+                    <div className="space-y-2 text-white ">
+                        <NextLink href={slide.link} className="flex justify-normal items-start gap-3">
+                            <motion.h2 
+                            className=" text-xl font-bold responsive-appbar-button "
+                            initial={{ x: -20 }}
+                            animate={{ x: 0 }}
+                            >
+                                {slide.ru}  
+                            </motion.h2>
+                            <div>
+                                <Eye strokeWidth={1}  className='mt-2 w-6 h-6 text-white  animate-pulse' />
+                            </div>
 
-
-
-                        </motion.div>
-                    </motion.div>
-))}
-</motion.div>
-            </div>
-            <div className="embla__controls">
-                <div className="embla__buttons">
-                    <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
-                    <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
+                     </NextLink>
+                      <motion.p
+                        className="text-base opacity-90  text-white/80"
+                        initial={{ x: 20 }}
+                        animate={{ x: 0 }}
+                      >
+                        {slide.description}
+                      </motion.p>
+                    </div>
+                    {/* <div className="absolute inset-0 bg-gradient-to-t from-gray via-white to-transparent" /> */}
+             
+                  </motion.div>
                 </div>
-            </div>
-        </section>
-    )
-}
+              {/* </NextLink> */}
 
-export default EmblaCarousel
+            </motion.div>
+            
+          ))}
+        </motion.div>
+      </div>
 
+      <div className="embla__controls">
+        <div className="embla__buttons">
+          <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
+          <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
+        </div>
+      </div>
+
+    </section>
+  );
+};
+
+export default EmblaCarousel;

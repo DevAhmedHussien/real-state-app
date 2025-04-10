@@ -104,7 +104,7 @@ a , button{
   bottom: 0;
   left: -100%;
   /* background: linear-gradient(to right, #ECC94B 10%, #432F28); */
-  background: linear-gradient(to right, #54728C 10%, #2D2D2D);
+  background: linear-gradient(to right, #2D2D2D 10%, #54728C);
   z-index: 0;
   transition: left 0.3s ease;
 }

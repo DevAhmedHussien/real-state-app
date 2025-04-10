@@ -32,7 +32,7 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">Login</h1>
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6 max-w-92">
           <Input
             label='Email'
             type="email"
@@ -73,11 +73,7 @@ export default function LoginPage() {
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600">
             Do not have an account?{' '}
-            <Link href="/register"
-            // className="text-blue-500 hover:text-blue-600"
-            className='responsive-appbar-button'
-            
-            >
+            <Link href="/register" className="text-blue-500 hover:text-blue-600">
               Register here
             </Link>
           </p>

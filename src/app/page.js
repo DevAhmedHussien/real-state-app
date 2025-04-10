@@ -1,4 +1,3 @@
-import {  cityOptions } from '@/constants/data';
 import Head from 'next/head';
 import EmblaCarousel from '@/components/component/product-slider/EmblaCarousel';
 import HeroSection from '@/components/component/hero-section/HeroSection';
@@ -53,17 +52,13 @@ export default function ProductPage() {
         <Categories/>
 
         {/* Animated Products Section */}
-        <div className="mt-5 p-6">
+        {/* <div className="mt-5 p-6">
           <h2 className="text-3xl text-primary-dark mb-6 font-bold text-left">
             Featured Products 
             <span className="text-xl ml-5 text-primary-hover cursor-pointer hover:text-primary-dark underline transition-all delay-100 "> 
             <NextLink href='/products' className='responsive-appbar-button'> all</NextLink> </span>
           </h2> 
-          
-          {/* <AnimatedtedProducts /> */}
-          <EmblaCarousel slides={cityOptions} />
-
-        </div>
+        </div> */}
     </>
   );
 }

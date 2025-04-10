@@ -1,10 +1,9 @@
 'use client';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation'; 
-import { ShoppingCart, Search, X, UserRound } from 'lucide-react';
+import { Search, X, UserRound } from 'lucide-react';
 import Input from '@/components/ui/input';
 
-const SearchProduct = ({ searchQuery, setSearchQuery, toggleSearch, isSearchOpen }) => {
+const SearchProduct = ({ searchQuery, setSearchQuery, toggleSearch, isSearchOpen  }) => {
   
   const router = useRouter(); 
 
@@ -69,11 +68,6 @@ const SearchProduct = ({ searchQuery, setSearchQuery, toggleSearch, isSearchOpen
         </button>
       </div>
 
-
-      {/* Login Link */}
-      <Link href="/login" className="text-gray-800 hover:text-primary-hover  transition-colors duration-300">
-        <UserRound size={20} />
-      </Link>
     </div>
   );
 };
