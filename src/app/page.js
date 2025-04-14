@@ -4,7 +4,6 @@ import HeroSection from '@/components/component/hero-section/HeroSection';
 import Categories from '@/components/component/categories/Categories';
 import NextLink from '@/components/ui/NextLink';
 
-// Metadata for SEO
 // Метаданные для SEO
 export const metadata = {
   title: 'X Real Estate | Найдите недвижимость мечты',

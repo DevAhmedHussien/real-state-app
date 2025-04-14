@@ -20,7 +20,13 @@ import { cityOptions } from "@/constants/data"
 export function SelectFramer({isPopoverOpen, setIsPopoverOpen, selectedCityKey, selectedCity, handleCitySelect}) {
 
   return (
-    <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
+    <Popover 
+      open={isPopoverOpen} 
+      onOpenChange={setIsPopoverOpen}  
+      // Prevent the automatic focusing of the input
+      onOpenAutoFocus={(event) => {
+        event.preventDefault()
+      }}>
     <PopoverTrigger asChild>
       <Button
         variant="outline"
@@ -35,9 +41,11 @@ export function SelectFramer({isPopoverOpen, setIsPopoverOpen, selectedCityKey, 
       </Button>
     </PopoverTrigger>
 
-    <PopoverContent 
-      align="center"
-      sideOffset={8}
+    <PopoverContent
+      side="bottom"        
+      align="center"      
+      sideOffset={8}      
+      avoidCollisions={false} 
       className="w-[var(--radix-popover-trigger-width)] p-0 overflow-hidden rounded-md shadow-md bg-white/95 backdrop-blur-sm border border-gray-100"
     >
       <Command className="[&_[cmdk-group]]:px-2 [&_[cmdk-group]]:py-3">
@@ -53,15 +61,15 @@ export function SelectFramer({isPopoverOpen, setIsPopoverOpen, selectedCityKey, 
           <CommandGroup>
             {cityOptions.map((city) => (
               <CommandItem
-                key={city.key}
-                value={city.key}
-                onSelect={() => handleCitySelect(city.key)}
+                key={city.ru}
+                value={city.ru}
+                onSelect={() => handleCitySelect(city.ru)}
                 className="group px-4 py-3 rounded-md aria-selected:bg-gray-50/50 transition-colors"
               >
                 <Check
                   className={cn(
                     "mr-3 h-5 w-5 text-primary",
-                    selectedCityKey === city.key 
+                    selectedCityKey === city.ru 
                       ? "opacity-100" 
                       : "opacity-0 group-hover:opacity-40"
                   )}
